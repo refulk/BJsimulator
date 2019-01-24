@@ -28,6 +28,7 @@ public class Baralho {
 		int carta;
 		Baralho b1 = new Baralho();		
 		b1.iniciaBaralhoOrdenado();
+		qtdTotal = 416;
 		
 		i = 0;
 		while(i < qtdTotal)
