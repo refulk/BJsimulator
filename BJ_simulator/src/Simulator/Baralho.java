@@ -15,11 +15,33 @@ public class Baralho {
 	}
 	
 	public static void main(String[] args) {
+//		Baralho b1 = new Baralho();		
+//		b1.iniciaBaralho();
+//		b1.exibeBaralho();
+//		System.out.println(b1.retiraCarta());
+//		b1.exibeBaralho();
+	}
+	public void geraEmbaralhado()
+	{
+		int i;
+		int carta;
+//		int carta = new Random().nextInt(baralho.length);
+		int [] controle = new int[qtdTotal];
 		Baralho b1 = new Baralho();		
 		b1.iniciaBaralho();
-		b1.exibeBaralho();
-		System.out.println(b1.retiraCarta());
-		b1.exibeBaralho();
+		
+		for(i = 0; i < qtdTotal; i++)
+		{
+			controle[i] = 0;
+		}
+		
+		i = 0;
+		while(i < qtdTotal)
+		{
+			
+		}
+		
+		
 	}
 	
 	public void iniciaBaralho() {		
@@ -60,17 +82,16 @@ public class Baralho {
 		}
 	}	
 	
-	public int retiraCarta()
+	public int retiraCarta(int carta)
 	{
-		int carta = new Random().nextInt(baralho.length);
+//		int carta = new Random().nextInt(baralho.length);
 		int cartaRetorno = baralho[carta].getValor();
 		qtdTotal--;
 		for(int i = carta; i < qtdTotal; i++)
 		{
-//			baralho[i] = baralho[i+1];
 			baralho[i].setValor(baralho[i+1].getValor());
 		}
-		System.out.println(carta);
+//		System.out.println(carta);
 		return cartaRetorno;
 	}
 }
