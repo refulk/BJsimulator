@@ -2,7 +2,6 @@ package Simulator;
 
 import java.util.Random;
 
-
 public class Baralho {
 	
 	int qtdTotal;
@@ -11,40 +10,36 @@ public class Baralho {
 	public Baralho()
 	{
 		this.qtdTotal = 416;
+//		this.qtdTotal = 52;
 		baralho = new Carta[qtdTotal];
 	}
 	
+	/*
 	public static void main(String[] args) {
-//		Baralho b1 = new Baralho();		
-//		b1.iniciaBaralho();
-//		b1.exibeBaralho();
-//		System.out.println(b1.retiraCarta());
-//		b1.exibeBaralho();
+		Baralho b2 = new Baralho();		
+		b2.geraEmbaralhado();
+//		b2.exibeBaralho();
 	}
+	*/
+	
 	public void geraEmbaralhado()
 	{
 		int i;
 		int carta;
-//		int carta = new Random().nextInt(baralho.length);
-		int [] controle = new int[qtdTotal];
 		Baralho b1 = new Baralho();		
-		b1.iniciaBaralho();
-		
-		for(i = 0; i < qtdTotal; i++)
-		{
-			controle[i] = 0;
-		}
+		b1.iniciaBaralhoOrdenado();
 		
 		i = 0;
 		while(i < qtdTotal)
 		{
-			
-		}
-		
-		
+			carta = b1.retiraCarta(new Random().nextInt(b1.qtdTotal));			
+			baralho[i] = new Carta();
+			baralho[i].setValor(carta);
+			i++;
+		}		
 	}
 	
-	public void iniciaBaralho() {		
+	public void iniciaBaralhoOrdenado() {		
 		int [] faces = {1,2,3,4,5,6,7,8,9,10,10,10,10};
 		int tamBaralho = faces.length;
 		int qtdCarta = qtdTotal / faces.length;
@@ -60,7 +55,6 @@ public class Baralho {
 		
 		while(i< qtdTotal)
 		{
-//			face = new Random().nextInt(faces.length);
 			face = i % 13;			
 			if(qtd[face] > 0)
 			{
@@ -72,7 +66,7 @@ public class Baralho {
 		}
 	}
 	
-	public void exibeBaralho()
+	public int exibeBaralho()
 	{
 		int i = 0;
 		while(i < qtdTotal)
@@ -80,19 +74,44 @@ public class Baralho {
 			System.out.println(i + " - " + baralho[i].getValor());
 			i++;
 		}
+		return 1;
 	}	
 	
 	public int retiraCarta(int carta)
 	{
-//		int carta = new Random().nextInt(baralho.length);
 		int cartaRetorno = baralho[carta].getValor();
 		qtdTotal--;
 		for(int i = carta; i < qtdTotal; i++)
 		{
 			baralho[i].setValor(baralho[i+1].getValor());
 		}
-//		System.out.println(carta);
 		return cartaRetorno;
+	}
+	
+	public int contaCarta(int carta)
+	{
+		int cont = 0;
+		for(int i = 0; i < qtdTotal; i++)
+		{
+			if(baralho[i].getValor() == carta)
+			{
+				cont++;
+			}
+		}
+		return cont;
+	}
+	
+	public int distribuiCarta()
+	{
+		if(this.qtdTotal > 0)
+		{
+			this.qtdTotal--;
+			return baralho[this.qtdTotal].getValor();			
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }
 
