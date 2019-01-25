@@ -34,7 +34,7 @@ public class baralhoTest {
 	public void testContaCarta() {
 		Baralho b1 = new Baralho();
 		b1.iniciaBaralhoOrdenado();
-		assertThat(b1.contaCarta(1), is(32));
+		assertThat(b1.contaCarta(11), is(32));
 		assertThat(b1.contaCarta(10), is(128));		
 	}
 
@@ -42,7 +42,7 @@ public class baralhoTest {
 	public void testContaEmbaralhado() {
 		Baralho b1 = new Baralho();
 		b1.geraEmbaralhado();
-		assertThat(b1.contaCarta(1), is(32));
+		assertThat(b1.contaCarta(11), is(32));
 		assertThat(b1.contaCarta(10), is(128));		
 	}
 
