@@ -27,12 +27,9 @@ public class Jogada {
 	public static void main(String[] args) {		
 		Jogada j = new Jogada();
 		
-//		for(int i = 0; i < 10; i++)
-//			j.iniciaJogada();
-		j.iniciaJogadaTeste(2,2,7,5);
-
-//		System.out.println("Soma1 = " + j.getSoma1());
-//		System.out.println("Soma2 = " + j.getSoma2());
+		for(int i = 0; i < 10; i++)
+			j.iniciaJogada();
+//		j.iniciaJogadaTeste(9,9,7,5);
 	}
 	
 	public Jogada()
@@ -77,8 +74,10 @@ public class Jogada {
 
 		System.out.println("/////////////////////////////");
 		System.out.println("NOVO JOGO\nJOGADOR:");
-		System.out.println(j1.getValor() + " + " + j2.getValor() + " = " + (j1.getValor() + j2.getValor()));
-	
+//		System.out.println(j1.getValor() + " + " + j2.getValor() + " = " + (j1.getValor() + j2.getValor()));
+		System.out.println(j1.getValor() + " - " + j2.getValor());
+
+		
 		realizaJogada();
 		saldoJogo = mesaJoga();
 		saldoJogador += saldoJogo;
@@ -111,7 +110,9 @@ public class Jogada {
 			qtdAmesa--;
 		}
 		
-		System.out.println(m1.getValor() + " + " + m2.getValor() + " = " + somaMesa);
+//		System.out.println(m1.getValor() + " + " + m2.getValor() + " = " + somaMesa);
+		System.out.println(m1.getValor() + " - " + m2.getValor());
+		
 		int novaCarta;
 		
 		while(somaMesa < 17)
@@ -125,13 +126,13 @@ public class Jogada {
 				somaMesa -= 10;
 				qtdAmesa--;
 			}
-			System.out.println("m = " + novaCarta);
-			System.out.println("Soma = " + somaMesa);
+			System.out.println("(" + novaCarta + ") = " + somaMesa);
+//			System.out.println("Soma = " + somaMesa);
 		}
 		
-		System.out.println("J="+soma1+" M="+somaMesa);
+		System.out.println("\nJ="+soma1+" M="+somaMesa);
 		
-		if(dobrou1 > 0)
+		if(dobrou1 > 0 || dobrou2 > 0)
 		{
 			dobrou = dobrou1;
 		}
@@ -140,24 +141,24 @@ public class Jogada {
 			if(somaMesa > 21)
 			{
 				aposta += (apostar + dobrou);
-				System.out.println("1");
+//				System.out.println("1");
 			}
 			else
 			{
 				if(somaMesa > soma1)
 				{
 					aposta -= (apostar + dobrou); //perdeu
-					System.out.println("2");
+//					System.out.println("2");
 				}
 				else if(somaMesa < soma1)
 				{
 					aposta += (apostar + dobrou);
-					System.out.println("3");
+//					System.out.println("3");
 				}
 				else
 				{
 					aposta += 0; //empate!
-					System.out.println("4");
+//					System.out.println("4");
 				}					
 			}
 						
@@ -170,7 +171,7 @@ public class Jogada {
 				System.out.println("BlackJack1");
 				aposta += (2 + dobrou);
 				aposta += (1); //ganha 50% a mais
-				System.out.println("5");
+//				System.out.println("5");
 			}
 			else
 			{
@@ -178,20 +179,20 @@ public class Jogada {
 					aposta += (apostar + dobrou);
 				else
 					aposta += 0;
-				System.out.println("6");
+//				System.out.println("6");
 			}			
 		}
 		else
 		{
 			aposta -= (apostar + dobrou); //perdeu
-			System.out.println("7");
+//			System.out.println("7");
 		}
 		
-		System.out.println("SaldoParcial: " + aposta);
+//		System.out.println("SaldoParcial: " + aposta);
 		//Se dividir
 		if(soma2 > 0)
 		{
-			if(dobrou2 > 0)
+			if(dobrou2 > 0 || dobrou1 > 0)
 			{
 				dobrou = dobrou2;
 			}
@@ -201,24 +202,24 @@ public class Jogada {
 				if(somaMesa > 21)
 				{
 					aposta += (apostar + dobrou);
-					System.out.println("8");
+//					System.out.println("8");
 				}
 				else
 				{
 					if(somaMesa > soma2)
 					{
 						aposta -= (apostar + dobrou); //perdeu
-						System.out.println("9");
+//						System.out.println("9");
 					}
 					else if(somaMesa < soma2)
 					{
 						aposta += (apostar + dobrou);
-						System.out.println("10");
+//						System.out.println("10");
 					}
 					else
 					{
 						aposta += 0; //empate!
-						System.out.println("11");
+//						System.out.println("11");
 					}					
 				}
 							
@@ -231,7 +232,7 @@ public class Jogada {
 					System.out.println("BlackJack2");
 					aposta += (2 + dobrou);
 					aposta += 1;
-					System.out.println("12");
+//					System.out.println("12");
 				}
 				else
 				{
@@ -239,16 +240,16 @@ public class Jogada {
 						aposta += (apostar + dobrou);
 					else
 						aposta += 0;					
-					System.out.println("13");
+//					System.out.println("13");
 				}			
 			}
 			else
 			{
 				aposta -= (apostar + dobrou); //perdeu
-				System.out.println("14");
+//				System.out.println("14");
 			}
 		}
-		System.out.println("SaldoParcial2: " + aposta);
+		System.out.println("Saldo da Jogada: " + saldoJogador);
 		return aposta;
 	}
 			
@@ -264,7 +265,8 @@ public class Jogada {
 			if(
 			(lj1 == 11)//Par de Ás
 			|| ((lj1 == 2 || lj1 == 3) && (lm1 >= 2 && lm1 <= 7)) //2 ou 3, mesa 2 a 7, #divida.
-			|| ((lj1 == 4 || lj1 == 7 || lj1 == 8) && (lm1 >=4 && lm1 <=6)) //4, 7 ou 8, mesa de 4 a 6, #divida.
+			|| ((lj1 == 4) && (lm1 >=4 && lm1 <=6)) //4, 7 ou 8, mesa de 4 a 6, #divida.
+			|| ((lj1 == 7 || lj1 == 8) && (lm1 >=4 && lm1 <=7)) //7 ou 8, mesa de 4 a 7, #divida.
 			|| ((lj1 == 9) && (lm1 >=2 && lm1 <=6)) //9, mesa de 2 a 6, #divida.			
 			) //final do IF
 			{
@@ -313,7 +315,7 @@ public class Jogada {
 				qtdA++;	
 			if(qtdA > 0) //recebeu As
 			{
-				System.out.println("tem As");
+//				System.out.println("tem As");
 				soma1 = jogadaAs();
 				blackjack1 = blackjack;
 			}
@@ -535,7 +537,7 @@ public class Jogada {
 			else if(lj2 == 10) //BlackJack
 			{
 				blackjack = 1;
-				System.out.println("BJ-linha481");
+//				System.out.println("BJ-linha481");
 				return soma;
 			}
 			else
@@ -574,8 +576,8 @@ public class Jogada {
 
 		System.out.println("/////////////////////////////");
 		System.out.println("NOVO JOGO\nJOGADOR:");
-		System.out.println(j1.getValor() + " + " + j2.getValor() + " = " + (j1.getValor() + j2.getValor()));
-	
+//		System.out.println(j1.getValor() + " + " + j2.getValor() + " = " + (j1.getValor() + j2.getValor()));
+		System.out.println(j1.getValor() + " - " + j2.getValor());
 		realizaJogada();
 		saldoJogo = mesaJoga();
 		saldoJogador += saldoJogo;
