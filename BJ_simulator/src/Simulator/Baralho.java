@@ -114,6 +114,24 @@ public class Baralho {
 			return 0;
 		}
 	}
+	
+	public int buscaRetiraCarta(int valorCarta)
+	{
+		int carta = qtdTotal - 1;
+		while(carta >= 0 && valorCarta != baralho[carta].getValor())
+		{
+			carta--;
+		}
+		if(carta >= 0)
+		{			
+			return retiraCarta(carta);
+		}
+		else
+		{
+			return -1;			
+		}
+	}
+	
 }
 
 

@@ -9,6 +9,7 @@ import org.junit.Test;
 import Simulator.Baralho;
 
 public class baralhoTest {
+	
 	@Test
 	public void testIniciaBaralho() {
 		Baralho b1 = new Baralho();
@@ -65,6 +66,28 @@ public class baralhoTest {
 		}
 		int carta = b1.distribuiCarta();
 		Assert.assertTrue(carta == 0); 
+	}
+	
+	@Test
+	public void testBuscaRetiraCartaValida() {
+		Baralho b1 = new Baralho();
+		b1.geraEmbaralhado();		
+		assertThat(b1.buscaRetiraCarta(9), is(9));
+		
+		b1 = new Baralho();
+		b1.geraEmbaralhado();		
+		assertThat(b1.buscaRetiraCarta(11), is(11));
+	}
+	
+	@Test
+	public void testBuscaRetiraCartaInvalida() {
+		Baralho b1 = new Baralho();
+		b1.geraEmbaralhado();		
+		assertThat(b1.buscaRetiraCarta(1), is(-1));
+		
+		b1 = new Baralho();
+		b1.geraEmbaralhado();		
+		assertThat(b1.buscaRetiraCarta(0), is(-1));
 	}
 	
 }
