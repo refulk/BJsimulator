@@ -23,6 +23,8 @@ public class Jogada {
 	int blackjack1;
 	int blackjack2;
 	static int qtdJogadas;
+	int maxSaldo;
+	int minSaldo;
 	
 	final int apostar = 2;
 	
@@ -31,28 +33,30 @@ public class Jogada {
 		int qtdJ = 10000000;
 		Jogada j;		
 		
-		j = new Jogada();
-		j.setQtdJogadas(qtdJ);		
-		for(int i = 0; i < qtdJogadas; i++)
-		{
-			j.iniciaJogada();
-//			j.iniciaJogada2(2,2,0,0);
-		}
-		System.out.println(j.getQtdJogadas());
-		System.out.println(j.getSaldoJogador());
+//		for(int cart = 2; cart <= 7; cart++)
+//		{
+//			System.out.println("\n\nA"+cart);
+			for(int k = 0; k < 2; k++)
+			{
+				j = new Jogada();
+				j.setQtdJogadas(qtdJ);		
+				for(int i = 0; i < qtdJogadas; i++)
+				{
+					j.iniciaJogada();
+//					j.iniciaJogada2(0,0,0,0);
+				}
+				System.out.println("\n" + k);
+				System.out.println("Qtd de Jogadas: " + j.getQtdJogadas());
+				System.out.println("Saldo final do Jogador: "+j.getSaldoJogador());
+				System.out.println("Saldo Maximo durante o jogo: "+j.maxSaldo);
+				System.out.println("Saldo Minimo durante o jogo: "+j.minSaldo);				
+			}
+//		}
 		
 		
-		j = new Jogada();		
-		j.setQtdJogadas(qtdJ);		
-		for(int i = 0; i < qtdJogadas; i++)
-		{
-			j.iniciaJogada();
-//			j.iniciaJogada2(2,2,0,0);
-		}
-		System.out.println("\n"+j.getQtdJogadas());
-		System.out.println(j.getSaldoJogador());
+
 		
-//		j.iniciaJogadaTeste(9,9,7,5);
+		
 	}
 	
 	public Jogada()
@@ -69,6 +73,8 @@ public class Jogada {
 		blackjack2 = 0;
 		dobrou1 = 0;
 		dobrou2 = 0;
+		minSaldo = 999;
+		maxSaldo = -999;
 	}
 
 	public void setQtdJogadas(int qtdJ)
@@ -127,6 +133,10 @@ public class Jogada {
 //		else
 //			System.out.println("\nEmpatou: " + saldoJogo);
 //		System.out.println("Saldo Jogador = " + saldoJogador + "\n");
+		if(saldoJogador < minSaldo)
+			minSaldo = saldoJogador;
+		if(saldoJogador > maxSaldo)
+			maxSaldo = saldoJogador;
 		
 	}
 
@@ -151,7 +161,7 @@ public class Jogada {
 
 		if(jj1 == 0)
 		{
-			j1.setValor(b.distribuiCarta());			
+			j1.setValor(b.distribuiCarta());
 		}
 		else
 		{
@@ -190,6 +200,11 @@ public class Jogada {
 		realizaJogada();
 		saldoJogo = mesaJoga();
 		saldoJogador += saldoJogo;	
+
+		if(saldoJogador < minSaldo)
+			minSaldo = saldoJogador;
+		if(saldoJogador > maxSaldo)
+			maxSaldo = saldoJogador;
 	}
 	
 	public int mesaJoga()
@@ -582,10 +597,45 @@ public class Jogada {
 		}
 		else 
 		{
-			if(soma == 17 && qtdA > 0)
+			if((soma == 17 || soma == 18) && qtdA > 0)
 			{
-				//peça
-				soma = pegaCarta();	
+				if(soma == 17)
+				{
+					if(lm1 >= 3 && lm1 <= 6)
+					{
+						//dobre
+						//System.out.println("Dobrou!");
+						dobrou = apostar;
+						soma = pegaCarta();	
+						return soma;
+					}
+					else 
+					{
+						//peça
+						soma = pegaCarta();							
+					}
+						
+				}
+				else //soma == 18
+				{
+					if(lm1 >= 3 && lm1 <= 6)
+					{
+						//dobre
+						//System.out.println("Dobrou!");
+						dobrou = apostar;
+						soma = pegaCarta();	
+						return soma;
+					}
+					else if(lm1 >= 9)
+					{
+						//peça
+						soma = pegaCarta();							
+					}
+					else //lm1 == 2 ou 7 ou 8
+					{
+						return soma;						
+					}
+				}
 			}
 			else
 			{
@@ -603,13 +653,6 @@ public class Jogada {
 		int lm1;
 //		soma = j1.getValor() + j2.getValor(); //verificar se esta correto!
 		lm1 = m1.getValor();
-
-		int lj2;
-		
-		if(j1.getValor() == 11)
-			lj2 = j2.getValor();
-		else
-			lj2 = j1.getValor();
 		
 		while(soma < 17)
 		{
@@ -667,10 +710,39 @@ public class Jogada {
 			}
 			else 
 			{
-				if(soma == 17 && qtdA > 0)
+				if((soma == 17 || soma == 18) && qtdA > 0)
 				{
-					//peça
-					soma = pegaCarta();	
+					if(soma == 17)
+					{
+						if(lm1 >= 3 && lm1 <= 6)
+						{
+							//peça
+							soma = pegaCarta();		
+						}
+						else
+						{
+							//peça
+							soma = pegaCarta();							
+						}
+							
+					}
+					else //soma == 18
+					{
+						if(lm1 >= 3 && lm1 <= 6)
+						{
+							//peça
+							soma = pegaCarta();		
+						}
+						else if(lm1 >= 9)
+						{
+							//peça
+							soma = pegaCarta();							
+						}
+						else //lm1 == 2 ou 7 ou 8
+						{
+							return soma;						
+						}
+					}
 				}
 				else
 				{
