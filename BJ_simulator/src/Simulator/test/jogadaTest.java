@@ -7,7 +7,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import Simulator.Carta;
-import Simulator.Jogada;	
+import Simulator.Jogada;
+import Simulator.JogadaClean;	
 
 public class jogadaTest {
 
@@ -117,9 +118,36 @@ public class jogadaTest {
 		Assert.assertTrue(j.getSoma1() > 0);
 		Assert.assertTrue(j.getSoma2() > 0); //naoDivide		
 	}
-	
-	
-	
+		
+	@Test
+	public void test22()
+	{
+		Jogada j;
+		for(int i = 0; i < 100; i++)
+		{
+			j = new Jogada();	
+			j.iniciaJogada2(2, 2, 2, 0); //H
+			Assert.assertTrue(j.saldoJogador == 2 || j.saldoJogador == 0 || j.saldoJogador == -2);
+			Assert.assertTrue(j.soma1 > 4 && j.soma2 == 0);	
+			
+			j = new Jogada();	
+			Assert.assertTrue(j.saldoJogador == 0); 
+			j.iniciaJogada2(2, 2, 3, 0); //SP
+			Assert.assertTrue(j.saldoJogador <= 4 && j.saldoJogador >= -4); 
+			Assert.assertTrue(j.soma1 > 0 && j.soma2 > 0);	
+			
+			j = new Jogada();	
+			j.iniciaJogada2(2, 2, 7, 0); //SP
+			Assert.assertTrue(j.saldoJogador <= 4 && j.saldoJogador >= -4); 
+			Assert.assertTrue(j.soma1 > 0 && j.soma2 > 0);		
+			
+			j = new Jogada();	
+			j.iniciaJogada2(2, 2, 8, 0); //H
+			Assert.assertTrue(j.saldoJogador == 2 || j.saldoJogador == 0 || j.saldoJogador == -2);
+			Assert.assertTrue(j.soma1 > 4 && j.soma2 == 0);				
+		}
+	}
+
 	
 	
 	

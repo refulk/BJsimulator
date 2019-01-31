@@ -1,6 +1,6 @@
 package Simulator;
 
-public class JogadaClean {	
+public class JogadaCleanBKP {	
 	
 	Baralho b = new Baralho();
 	Carta j1 = new Carta();
@@ -21,13 +21,13 @@ public class JogadaClean {
 	
 	boolean exibir;
 
-	public JogadaClean()
+	public JogadaCleanBKP()
 	{
 		exibir = true;
 		inicia();
 	}
 	
-	public JogadaClean(boolean e)
+	public JogadaCleanBKP(boolean e)
 	{
 		exibir = e;
 		inicia();
@@ -181,8 +181,7 @@ public class JogadaClean {
 	//Ok
 	public int dobrar(int soma)
 	{
-		aposta = aposta * 2;
-		System.out.println("AP = " + aposta);
+		aposta = aposta * 2;	
 		return pegaCarta(soma);
 	}
 	
@@ -265,7 +264,7 @@ public class JogadaClean {
 	}
 	
 	//Feito
-	private void jogadaDividir()  //verificar se esta correto!
+	private void jogadaDividir()
 	{
 		int lj1, lj2;
 		lj1 = j1.getValor();
@@ -608,11 +607,9 @@ public class JogadaClean {
 		if(exibir)
 		{
 			System.out.println("J = "+somaJogador);
-			System.out.println("Aposta = " + aposta);
 			if(somaJogadorDividiu > 0)
 			{
 				System.out.println("Jdiv = "+somaJogadorDividiu);
-				System.out.println("apostaDividiu = " + apostaDividiu);
 			}
 			System.out.println("M = "+somaMesa);
 			System.out.println("SALDO = " + saldoJogador);

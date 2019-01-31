@@ -17,12 +17,12 @@ public class Jogada {
 	Carta m2 = new Carta();
 	int qtdA;
 	int soma;
-	int soma1;
-	int soma2;
+	public int soma1;
+	public int soma2;
 	int dobrou;
 	int dobrou1;
 	int dobrou2;
-	int saldoJogador;
+	public int saldoJogador;
 	int blackjack;
 	int blackjack1;
 	int blackjack2;
@@ -34,6 +34,12 @@ public class Jogada {
 	
 	public static void main(String[] args) {	
 
+		Jogada j;		
+		j = new Jogada();
+		
+		j.iniciaJogada2(2,2,3,0);
+		
+		
 //		FileWriter arq = null;
 //		try {
 //			arq = new FileWriter("Arquivo1.txt");
@@ -44,7 +50,7 @@ public class Jogada {
 //		PrintWriter gravarArq = new PrintWriter(arq);
 //		
 		
-		
+		/*
 		int qtdJ = 250000;
 		Jogada j;		
 		int lucro = 0, qtdPerdeu = 0, qtdGanhou = 0, qtdZero = 0;
@@ -87,7 +93,7 @@ public class Jogada {
 			
 		}
 		System.out.println("\n\nMinimo Geral =  "+minimo);	
-		
+		*/
 //			System.out.println("\nResultado: "+lucro);
 //			System.out.println("qtdGanhou: "+qtdGanhou);
 //			System.out.println("qtdPerdeu: "+qtdPerdeu);
@@ -240,10 +246,16 @@ public class Jogada {
 //			b.buscaRetiraCarta(mm2);
 			m2.setValor(mm2);
 		}
-				
+		
+		System.out.println("/////////////////////////////");
+		System.out.println("NOVO JOGO\nJOGADOR:");
+		System.out.println(j1.getValor() + " + " + j2.getValor() + " = " + (j1.getValor() + j2.getValor()));
+			
 		realizaJogada();
 		saldoJogo = mesaJoga();
 		saldoJogador += saldoJogo;	
+		
+		System.out.println("saldoJogador = " + saldoJogador);
 
 		if(saldoJogador < minSaldo)
 			minSaldo = saldoJogador;
@@ -253,7 +265,7 @@ public class Jogada {
 	
 	public int mesaJoga()
 	{
-		//System.out.println("\nMESA:");
+		System.out.println("\nMESA:");
 		
 		int somaMesa, qtdAmesa, aposta;
 		aposta = 0;
@@ -269,7 +281,7 @@ public class Jogada {
 			qtdAmesa--;
 		}
 		
-//		System.out.println(m1.getValor() + " + " + m2.getValor() + " = " + somaMesa);
+		System.out.println(m1.getValor() + " + " + m2.getValor() + " = " + somaMesa);
 		//System.out.println(m1.getValor() + " - " + m2.getValor());
 		
 		int novaCarta;
@@ -285,11 +297,11 @@ public class Jogada {
 				somaMesa -= 10;
 				qtdAmesa--;
 			}
-			//System.out.println("(" + novaCarta + ") = " + somaMesa);
-//			System.out.println("Soma = " + somaMesa);
+			System.out.println("(" + novaCarta + ") = " + somaMesa);
+			System.out.println("Soma = " + somaMesa);
 		}
 		
-		//System.out.println("\nJ="+soma1+" M="+somaMesa);
+		System.out.println("\nJ="+soma1+" M="+somaMesa);
 		
 		if(dobrou1 > 0 || dobrou2 > 0)
 		{
@@ -347,7 +359,7 @@ public class Jogada {
 //			System.out.println("7");
 		}
 		
-//		System.out.println("SaldoParcial: " + aposta);
+		System.out.println("SaldoParcial: " + aposta);
 		//Se dividir
 		if(soma2 > 0)
 		{
@@ -408,7 +420,7 @@ public class Jogada {
 //				System.out.println("14");
 			}
 		}
-		//System.out.println("Saldo da Jogada: " + saldoJogador);
+		System.out.println("Saldo da Jogada: " + aposta);
 		return aposta;
 	}
 			
@@ -433,7 +445,7 @@ public class Jogada {
 			) //final do IF
 			{
 				//Dividir
-				//System.out.println("Dividiu1:");
+				System.out.println("Dividiu1:");
 				if(j1.getValor() == 11)
 					qtdA=1;
 				else
@@ -442,8 +454,10 @@ public class Jogada {
 				blackjack1 = blackjack;
 				dobrou1 = dobrou;
 				dobrou = 0;
+				System.out.println("Soma1 = " + soma1);
+				System.out.println("dobrou1 = " + dobrou1);
 
-				//System.out.println("Dividiu2:");
+				System.out.println("\nDividiu2:");
 				if(j1.getValor() == 11)
 					qtdA=1;
 				else
@@ -452,6 +466,8 @@ public class Jogada {
 				blackjack2 = blackjack;
 				dobrou2 = dobrou;
 				dobrou = 0;
+				System.out.println("Soma2 = " + soma2);
+				System.out.println("dobrou2 = " + dobrou2);
 			}
 			else
 			{
@@ -495,7 +511,7 @@ public class Jogada {
 		int somaTemp;
 		//quando o jogador dividir
 		j2.setValor(b.distribuiCarta());
-		//System.out.println("(" + j2.getValor() + ") = " + (j1.getValor() + j2.getValor()));
+		System.out.println("(" + j2.getValor() + ") = " + (j1.getValor() + j2.getValor()));
 		if(j2.getValor() == 11)
 			qtdA++;
 		if(j1.getValor() == 11 || j2.getValor() == 11)

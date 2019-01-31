@@ -9,7 +9,7 @@ public class ControladorJogo {
 		ControladorJogo cont = new ControladorJogo();
 		
 //		cont.Jogar(1000000, 5, 3, 9, 0);
-		cont.JogarManual(0, 0, 0, 0);
+		cont.JogarManual(2, 2, 3, 0);
 	}
 
 	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
