@@ -1,13 +1,15 @@
 package Simulator;
 
+import java.util.Scanner;
+
 public class ControladorJogo {
 	
 	public static void main(String[] args) {
 		
 		ControladorJogo cont = new ControladorJogo();
 		
-		cont.Jogar(1000000, 0, 0, 0, 0);
-		
+//		cont.Jogar(1000000, 5, 3, 9, 0);
+		cont.JogarManual(0, 0, 0, 0);
 	}
 
 	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
@@ -21,6 +23,20 @@ public class ControladorJogo {
 		System.out.println("qtdWin = " + j.qtdWin);
 		System.out.println("qtdLoss = " + j.qtdLoss);
 		System.out.println("Empate = " + (qtdJogadas - (j.qtdLoss+j.qtdWin)));
+	}
+	
+	public void JogarManual(int j1, int j2, int m1, int m2)
+	{
+		JogadaClean j = new JogadaClean(true);
+		Scanner Input = new Scanner (System.in);		
+		Scanner reader = new Scanner(System.in);
+		int  entrada = 1;
+		
+		while(entrada == 1)
+		{
+			j.iniciaJogada(j1,j2,m1,m2);
+			entrada = reader.nextInt();
+		}
 	}
 
 	  /*

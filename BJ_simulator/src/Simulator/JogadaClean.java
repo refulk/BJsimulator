@@ -652,8 +652,7 @@ public class JogadaClean {
 				saldoJogador -= japosta;
 				qtdLoss++;
 			}
-			//else empate!
-				
+			//else empate!				
 		}
 		else
 		{
