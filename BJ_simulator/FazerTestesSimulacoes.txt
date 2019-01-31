@@ -1,0 +1,24 @@
+2 2 = compensa dividir?
+3 3 = compensa dividir?
+7 7 = compensa dividir?
+14, 15, 16 compensa pegar com mesa = 7 8 9 ?
+9 9 = testar o que compensa! (em tudo)
+A6 e A7 = compensa dobrar?
+
+
+
+
+Testes:
+testar com a mesa mostrando o BJ antes do jogador jogar e depois do jogador jogar.
+
+
+
+
+
+
+
+
+
+
+
+
