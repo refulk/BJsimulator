@@ -3,7 +3,72 @@ package Simulator;
 public class ControladorJogo {
 	
 	public static void main(String[] args) {
+		JogadaClean j = new JogadaClean();
 		
+		j.iniciaJogada(5, 6, 5, 6);
 	}
 
+	
+
+	  /*
+	   //BACKUP
+	   
+	   	
+	public void gravarArquivo()
+	{
+		FileWriter arq = null;
+		try {
+			arq = new FileWriter("Arquivo.txt");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		PrintWriter gravarArq = new PrintWriter(arq);
+		
+		for (int i=1; i<=100; i++) {
+		    gravarArq.printf("%d%n", i);
+		  }
+		
+		try {
+			arq.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	   
+	   
+	   import java.io.FileWriter;
+	import java.io.IOException;
+	import java.io.PrintWriter;
+	import java.util.Scanner;
+	 
+	public class Exemplo {
+	 
+	  public static void main(String[] args) throws IOException {
+	    Scanner ler = new Scanner(System.in);
+	    int i, n;
+	 
+	    System.out.printf("Informe o número para a tabuada:\n");
+	    n = ler.nextInt();
+	 
+	    FileWriter arq = new FileWriter("d:\\tabuada.txt");
+	    PrintWriter gravarArq = new PrintWriter(arq);
+	 
+	    gravarArq.printf("+--Resultado--+%n");
+	    for (i=1; i<=10; i++) {
+	      gravarArq.printf("| %2d X %d = %2d |%n", i, n, (i*n));
+	    }
+	    gravarArq.printf("+-------------+%n");
+	 
+	    arq.close();
+	 
+	    System.out.printf("\nTabuada do %d foi gravada com sucesso em \"d:\\tabuada.txt\".\n", n);
+	  }
+	 
+	}
+
+	 */
+	
 }

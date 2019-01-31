@@ -60,7 +60,7 @@ public class jogadaTest {
 		j = new Jogada();	
 		j.iniciaJogadaTeste(2, 2, 2, 9);
 		Assert.assertTrue(j.getSoma1() > 0);
-		Assert.assertTrue(j.getSoma2() > 0);
+		Assert.assertTrue(j.getSoma2() == 0);
 
 		j = new Jogada();	
 		j.iniciaJogadaTeste(2, 2, 8, 9);
@@ -70,7 +70,7 @@ public class jogadaTest {
 		j = new Jogada();	
 		j.iniciaJogadaTeste(4, 4, 6, 9);
 		Assert.assertTrue(j.getSoma1() > 0);
-		Assert.assertTrue(j.getSoma2() > 0);
+		Assert.assertTrue(j.getSoma2() == 0);
 
 		j = new Jogada();	
 		j.iniciaJogadaTeste(4, 4, 2, 9);
@@ -85,7 +85,7 @@ public class jogadaTest {
 		j = new Jogada();	
 		j.iniciaJogadaTeste(6, 6, 5, 9);
 		Assert.assertTrue(j.getSoma1() > 0);
-		Assert.assertTrue(j.getSoma2() == 0); //naoDivide
+		Assert.assertTrue(j.getSoma2() > 0); 
 		
 		j = new Jogada();	
 		j.iniciaJogadaTeste(7, 7, 4, 9);
@@ -105,7 +105,7 @@ public class jogadaTest {
 		j = new Jogada();	
 		j.iniciaJogadaTeste(8, 8, 8, 9);
 		Assert.assertTrue(j.getSoma1() > 0);
-		Assert.assertTrue(j.getSoma2() == 0); //naoDivide
+		Assert.assertTrue(j.getSoma2() > 0); //
 		
 		j = new Jogada();	
 		j.iniciaJogadaTeste(9, 9, 4, 9);
@@ -115,7 +115,7 @@ public class jogadaTest {
 		j = new Jogada();	
 		j.iniciaJogadaTeste(9, 9, 8, 9);
 		Assert.assertTrue(j.getSoma1() > 0);
-		Assert.assertTrue(j.getSoma2() == 0); //naoDivide		
+		Assert.assertTrue(j.getSoma2() > 0); //naoDivide		
 	}
 	
 	

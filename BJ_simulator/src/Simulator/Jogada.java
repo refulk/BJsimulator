@@ -1,6 +1,10 @@
 
 package Simulator;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class Jogada {
 		
 	//mesa pega ate 17
@@ -29,33 +33,72 @@ public class Jogada {
 	final int apostar = 2;
 	
 	public static void main(String[] args) {	
-		
-		int qtdJ = 10000000;
-		Jogada j;		
-		
-//		for(int cart = 2; cart <= 7; cart++)
-//		{
-//			System.out.println("\n\nA"+cart);
-			for(int k = 0; k < 2; k++)
-			{
-				j = new Jogada();
-				j.setQtdJogadas(qtdJ);		
-				for(int i = 0; i < qtdJogadas; i++)
-				{
-					j.iniciaJogada();
-//					j.iniciaJogada2(0,0,0,0);
-				}
-				System.out.println("\n" + k);
-				System.out.println("Qtd de Jogadas: " + j.getQtdJogadas());
-				System.out.println("Saldo final do Jogador: "+j.getSaldoJogador());
-				System.out.println("Saldo Maximo durante o jogo: "+j.maxSaldo);
-				System.out.println("Saldo Minimo durante o jogo: "+j.minSaldo);				
-			}
+
+//		FileWriter arq = null;
+//		try {
+//			arq = new FileWriter("Arquivo1.txt");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
 //		}
+//		PrintWriter gravarArq = new PrintWriter(arq);
+//		
 		
 		
+		int qtdJ = 250000;
+		Jogada j;		
+		int lucro = 0, qtdPerdeu = 0, qtdGanhou = 0, qtdZero = 0;
+		int minimo = 999;
 
 		
+		for(int k = 0; k < 3; k++)
+		{
+			
+			j = new Jogada();
+			j.setQtdJogadas(qtdJ);		
+			for(int i = 0; i < qtdJogadas; i++)
+			{
+				j.iniciaJogada();
+//				gravarArq.printf("%d%n", j.getSaldoJogador());	//Grava dados no TXT
+	//			j.iniciaJogada2(0,0,0,0);
+			}
+			System.out.println("Qtd de Jogadas: " + j.getQtdJogadas());
+			System.out.println("Saldo final do Jogador: "+j.getSaldoJogador());
+			lucro+=j.getSaldoJogador();
+			
+			if(j.getSaldoJogador() > 0)
+			{
+				qtdGanhou++;
+			}
+			else
+			{
+				if(j.getSaldoJogador() != 0)
+					qtdPerdeu++;
+				else
+					qtdZero++;
+			}
+					System.out.println("Saldo Maximo durante o jogo: "+j.maxSaldo);
+					System.out.println("Saldo Minimo durante o jogo: "+j.minSaldo);	
+			if(j.minSaldo < minimo)
+			{
+				minimo = j.minSaldo;
+			}
+			
+			
+		}
+		System.out.println("\n\nMinimo Geral =  "+minimo);	
+		
+//			System.out.println("\nResultado: "+lucro);
+//			System.out.println("qtdGanhou: "+qtdGanhou);
+//			System.out.println("qtdPerdeu: "+qtdPerdeu);
+//			System.out.println("qtdZero: "+qtdZero);
+		
+//			try {
+//				arq.close();
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 		
 	}
 	
@@ -77,6 +120,7 @@ public class Jogada {
 		maxSaldo = -999;
 	}
 
+	
 	public void setQtdJogadas(int qtdJ)
 	{
 		qtdJogadas = qtdJ;
