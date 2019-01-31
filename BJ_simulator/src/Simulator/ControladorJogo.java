@@ -1,4 +1,4 @@
-package Simulator;
+// package Simulator;
 
 import java.util.Scanner;
 
@@ -8,8 +8,8 @@ public class ControladorJogo {
 		
 		ControladorJogo cont = new ControladorJogo();
 		
-//		cont.Jogar(1000000, 5, 3, 9, 0);
-		cont.JogarManual(2, 2, 3, 0);
+		cont.Jogar(1000000, 0, 0, 0, 0);
+		// cont.JogarManual(11, 11, 5, 0);
 	}
 
 	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
@@ -79,7 +79,7 @@ public class ControladorJogo {
 	    Scanner ler = new Scanner(System.in);
 	    int i, n;
 	 
-	    System.out.printf("Informe o número para a tabuada:\n");
+	    System.out.printf("Informe o numero para a tabuada:\n");
 	    n = ler.nextInt();
 	 
 	    FileWriter arq = new FileWriter("d:\\tabuada.txt");

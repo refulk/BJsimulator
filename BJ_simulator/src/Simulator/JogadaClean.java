@@ -1,4 +1,4 @@
-package Simulator;
+// package Simulator;
 
 public class JogadaClean {	
 	
@@ -143,7 +143,7 @@ public class JogadaClean {
 	public int pegaCarta(int soma)
 	{
 		int novaCarta, somaP;
-		novaCarta = retornaCarta(soma);
+		novaCarta = retornaCarta(soma, false);
 		if(novaCarta == 11)
 			qtdA++;
 		somaP = soma + novaCarta;
@@ -151,12 +151,14 @@ public class JogadaClean {
 		{
 			somaP -= 10;
 			qtdA--;
-		}				
+		}			
+		if(exibir)
+			System.out.println("("+novaCarta+") = "+somaP);	
 		return somaP;
 	}
 	
 	//Ok
-	public int retornaCarta(int soma)
+	public int retornaCarta(int soma, boolean ex)
 	{
 		int novaCarta, somaP;
 		novaCarta = b.distribuiCarta();
@@ -166,14 +168,14 @@ public class JogadaClean {
 			if(somaP > 21)
 			{
 				novaCarta = 1;
+				somaP -= 10;
 			}
 			else
 			{
 				qtdA++;
 			}
 		}
-		somaP = soma + novaCarta;
-		if(exibir)
+		if(ex)
 			System.out.println("("+novaCarta+") = "+somaP);
 		return novaCarta;		
 	}
@@ -182,7 +184,8 @@ public class JogadaClean {
 	public int dobrar(int soma)
 	{
 		aposta = aposta * 2;
-		System.out.println("AP = " + aposta);
+		if(exibir)
+			System.out.println("AP = " + aposta);
 		return pegaCarta(soma);
 	}
 	
@@ -233,7 +236,7 @@ public class JogadaClean {
 				}				
 				break;
 			case 7:				
-				if(lm1>=4 && lm1<=7)
+				if(lm1>=2 && lm1<=7)
 				{
 					jogadaDividir();
 				}
@@ -273,7 +276,7 @@ public class JogadaClean {
 		if(exibir)
 			System.out.println("Dividiu1");
 		
-		lj2 = retornaCarta(lj1); //pega segunda carta dividiu		
+		lj2 = retornaCarta(lj1, exibir); //pega segunda carta dividiu		
 		j2.setValor(lj2); //atualiza valor da segunda carta dividiu
 		qtdA = contaA(lj1, lj2);
 		somaJogadorDividiu = jogada1();
@@ -282,13 +285,13 @@ public class JogadaClean {
 		apostaDividiu = aposta;
 		blackjackDividiu = blackjack;
 		qtdA = 0;
-		aposta = 0;
+		aposta = 2;
 		blackjack = 0;
 
 		if(exibir)
 			System.out.println("Dividiu2");
 		
-		lj2 = retornaCarta(lj1); //pega segunda carta
+		lj2 = retornaCarta(lj1, exibir); //pega segunda carta
 		j2.setValor(lj2); //atualiza valor da segunda carta
 		qtdA = contaA(lj1, lj2);
 		somaJogador = jogada1();
@@ -327,6 +330,9 @@ public class JogadaClean {
 		
 		switch(carta)
 		{
+			case 1:
+				soma = jogadaComum(soma);
+				break;
 			case 2:		
 				if(lm1 >= 5 && lm1 <= 6)
 				{
@@ -496,7 +502,11 @@ public class JogadaClean {
 			}
 			else if(soma <= 12)
 			{
-				if(lm1 >= 4 && lm1 <= 6)
+				if(qtdA > 0)
+				{
+					soma = pegaCarta(soma);
+				}
+				else if(lm1 >= 4 && lm1 <= 6)
 				{
 					//stop
 					stop = 1;
@@ -590,6 +600,7 @@ public class JogadaClean {
 			somaMesa = somaMesa + novaCarta;
 			if(somaMesa > 21 && qtdAmesa > 0)
 			{
+				novaCarta = 1;
 				somaMesa -= 10;
 				qtdAmesa--;
 			}
@@ -640,13 +651,13 @@ public class JogadaClean {
 			{
 				//Mesa estourou
 				//Ganhou
-				saldoJogador += aposta;
+				saldoJogador += japosta;
 				qtdWin++;
 			}
 			else if(jsomaJogador > msomaMesa)
 			{
 				//Ganhou
-				saldoJogador += aposta;	
+				saldoJogador += japosta;	
 				qtdWin++;			
 			}
 			else if(jsomaJogador < msomaMesa)
