@@ -7,24 +7,39 @@ public class JogadaClean {
 	Carta j2 = new Carta();
 	Carta m1 = new Carta();
 	Carta m2 = new Carta();
-	int saldoJogador;
+	public int saldoJogador;
 	int qtdA;
-	int somaJogador;
+	public int somaJogador;
 	public int aposta;
 	int blackjack;
 	int qtdADividiu;
-	int somaJogadorDividiu;
+	public int somaJogadorDividiu;
 	int apostaDividiu;
 	int blackjackDividiu;
+	public int qtdWin;
+	public int qtdLoss;
 	
 	boolean exibir;
-	
+
 	public JogadaClean()
+	{
+		exibir = true;
+		inicia();
+	}
+	
+	public JogadaClean(boolean e)
+	{
+		exibir = e;
+		inicia();
+	}
+	
+	private void inicia()
 	{
 		b.geraEmbaralhado();
 		saldoJogador = 0;
-		exibir = true;
-		zerarVariaveis();
+		qtdWin = 0;
+		qtdLoss = 0;
+		zerarVariaveis();		
 	}
 	
 	private void zerarVariaveis()
@@ -166,10 +181,8 @@ public class JogadaClean {
 	//Ok
 	public int dobrar(int soma)
 	{
-		int somaP;
-		aposta = aposta * 2;
-		somaP = soma + retornaCarta(soma);		
-		return somaP;
+		aposta = aposta * 2;	
+		return pegaCarta(soma);
 	}
 	
 	//Feito
@@ -242,7 +255,7 @@ public class JogadaClean {
 				}	
 				break;
 			case 10:
-				//stop
+				somaJogador = lj1 + lj1;
 				break;
 			case 11:	
 				jogadaDividir();			
@@ -284,7 +297,6 @@ public class JogadaClean {
 	private int jogada1()
 	{
 		int soma;
-		
 		if(qtdA > 0)
 		{
 			soma = jogadaAs();
@@ -365,7 +377,7 @@ public class JogadaClean {
 				}				
 				break;
 			case 7:	
-				if(lm1 >= 4 && lm1 <= 6)
+				if(lm1 >= 3 && lm1 <= 6)
 				{
 					soma = dobrar(soma);
 				}
@@ -609,30 +621,36 @@ public class JogadaClean {
 	{
 		if(jsomaJogador <= 21) 
 		{
-			if(mblackjack == 1)
+			if(mblackjack == 1) // locovisck Se mesa e jogador tem BJ ?
 			{
 				//Perdeu
 				saldoJogador -= japosta;
+				qtdLoss++;
 			}
 			else if(jblackjack == 1)
 			{
 				//BlackJack
 				saldoJogador += japosta + (japosta/2);
+				qtdWin++;
 			}
 			else if(msomaMesa > 21)
 			{
+				//Mesa estourou
 				//Ganhou
 				saldoJogador += aposta;
+				qtdWin++;
 			}
 			else if(jsomaJogador > msomaMesa)
 			{
 				//Ganhou
-				saldoJogador += aposta;				
+				saldoJogador += aposta;	
+				qtdWin++;			
 			}
 			else if(jsomaJogador < msomaMesa)
 			{
 				//Perdeu
 				saldoJogador -= japosta;
+				qtdLoss++;
 			}
 			//else empate!
 				
@@ -642,6 +660,7 @@ public class JogadaClean {
 			//Jogador estourou
 			//Perdeu
 			saldoJogador -= japosta;
+			qtdLoss++;
 		}
 	}
 }

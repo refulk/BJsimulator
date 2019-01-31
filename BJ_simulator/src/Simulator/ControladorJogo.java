@@ -3,12 +3,25 @@ package Simulator;
 public class ControladorJogo {
 	
 	public static void main(String[] args) {
-		JogadaClean j = new JogadaClean();
 		
-		j.iniciaJogada(5, 6, 5, 6);
+		ControladorJogo cont = new ControladorJogo();
+		
+		cont.Jogar(1000000, 0, 0, 0, 0);
+		
 	}
 
-	
+	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
+	{
+		JogadaClean j = new JogadaClean(false);
+		for(int i = 0; i < qtdJogadas; i++)
+		{
+			j.iniciaJogada(j1,j2,m1,m2);
+		}
+		System.out.println("\nSaldo = " + j.saldoJogador);
+		System.out.println("qtdWin = " + j.qtdWin);
+		System.out.println("qtdLoss = " + j.qtdLoss);
+		System.out.println("Empate = " + (qtdJogadas - (j.qtdLoss+j.qtdWin)));
+	}
 
 	  /*
 	   //BACKUP
