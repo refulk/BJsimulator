@@ -1,3 +1,7 @@
+
+Para verificar se os 2 programas estao corretos, fazer os Sysout deles iguais, fazer um baralho fixo, e comparar saídas no merge online.
+
+
 2 2 = compensa dividir?
 3 3 = compensa dividir?
 7 7 = compensa dividir?

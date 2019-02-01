@@ -123,8 +123,8 @@ public class JogadaClean {
 		}
 		if(exibir)
 		{
-			System.out.println("somaJogador = " + somaJogador);
-			System.out.println("somaJogadorDividiu = " + somaJogadorDividiu);
+			// System.out.println("somaJogador = " + somaJogador);
+			// System.out.println("somaJogadorDividiu = " + somaJogadorDividiu);
 		}
 	}
 	
@@ -184,8 +184,8 @@ public class JogadaClean {
 	public int dobrar(int soma)
 	{
 		aposta = aposta * 2;
-		if(exibir)
-			System.out.println("AP = " + aposta);
+		// if(exibir)
+		// 	System.out.println("AP = " + aposta);
 		return pegaCarta(soma);
 	}
 	
@@ -274,7 +274,7 @@ public class JogadaClean {
 		lj1 = j1.getValor();
 		
 		if(exibir)
-			System.out.println("Dividiu1");
+			System.out.println("Dividiu1:");
 		
 		lj2 = retornaCarta(lj1, exibir); //pega segunda carta dividiu		
 		j2.setValor(lj2); //atualiza valor da segunda carta dividiu
@@ -289,7 +289,7 @@ public class JogadaClean {
 		blackjack = 0;
 
 		if(exibir)
-			System.out.println("Dividiu2");
+			System.out.println("Dividiu2:");
 		
 		lj2 = retornaCarta(lj1, exibir); //pega segunda carta
 		j2.setValor(lj2); //atualiza valor da segunda carta
@@ -590,7 +590,7 @@ public class JogadaClean {
 		int novaCarta;
 		
 		if(exibir)
-			System.out.println("Mesa: " + m1.getValor() + " " + m2.getValor()+" = " + somaMesa);
+			System.out.println("\nMesa: " + m1.getValor() + " " + m2.getValor()+" = " + somaMesa);
 		
 		while(somaMesa < 17)
 		{
@@ -618,7 +618,7 @@ public class JogadaClean {
 		
 		if(exibir)
 		{
-			System.out.println("J = "+somaJogador);
+			System.out.println("\nJ = "+somaJogador);
 			System.out.println("Aposta = " + aposta);
 			if(somaJogadorDividiu > 0)
 			{

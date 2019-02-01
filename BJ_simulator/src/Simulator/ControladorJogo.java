@@ -8,8 +8,8 @@ public class ControladorJogo {
 		
 		ControladorJogo cont = new ControladorJogo();
 		
-		cont.Jogar(1000000, 0, 0, 0, 0);
-		// cont.JogarManual(11, 11, 5, 0);
+		// cont.Jogar(1000000, 0, 0, 0, 0);
+		cont.JogarManual(0, 0, 0, 0);
 	}
 
 	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
