@@ -1,9 +1,8 @@
+package Simulator;
 
-// package Simulator;
-
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+//import java.io.FileWriter;
+//import java.io.IOException;
+//import java.io.PrintWriter;
 
 public class Jogada {
 		
@@ -29,15 +28,22 @@ public class Jogada {
 	static int qtdJogadas;
 	int maxSaldo;
 	int minSaldo;
+
+	boolean exibir;
 	
 	final int apostar = 2;
 	
 	public static void main(String[] args) {	
 
 		Jogada j;		
-		j = new Jogada();
+		j = new Jogada(true);
 		
-		j.iniciaJogada2(0,0,0,0);
+//		j = new Jogada(true);
+//		j.jogaExibe(300);
+		
+		j = new Jogada(false);
+		j.joga1(10000000);
+		
 		
 		
 //		FileWriter arq = null;
@@ -107,9 +113,26 @@ public class Jogada {
 //			}
 		
 	}
-	
-	public Jogada()
+
+	public void jogaExibe(int qtd)
+	{		
+		for(int i = 0; i < qtd; i++)
+			iniciaJogada2(0,0,0,0);
+	}
+
+	public void joga1(int qtd)
 	{
+		for(int i = 0; i < qtd; i++)
+			iniciaJogada2(0,0,0,0);
+		
+		System.out.println("Qtd de Jogadas: " + qtd);
+		System.out.println("Saldo final do Jogador: "+getSaldoJogador());
+		
+	}
+	
+	public Jogada(boolean e)
+	{
+		exibir = e;
 		b.geraEmbaralhado();
 		qtdA = 0;
 		soma = 0;
@@ -125,7 +148,6 @@ public class Jogada {
 		minSaldo = 999;
 		maxSaldo = -999;
 	}
-
 	
 	public void setQtdJogadas(int qtdJ)
 	{
@@ -246,15 +268,20 @@ public class Jogada {
 //			b.buscaRetiraCarta(mm2);
 			m2.setValor(mm2);
 		}
-		
-		System.out.println("\nNOVO JOGO");
-		System.out.println("Jogador: "+j1.getValor() + " " + j2.getValor());
+
+		if(exibir)
+		{
+			System.out.println("\n///////////////////////");
+			System.out.println("NOVO JOGO");
+			System.out.println("Jogador: "+j1.getValor() + " " + j2.getValor());			
+		}
 			
 		realizaJogada();
 		saldoJogo = mesaJoga();
 		saldoJogador += saldoJogo;	
 		
-		System.out.println("SALDO = " + saldoJogador);
+		if(exibir)
+			System.out.println("SALDO = " + saldoJogador);
 
 		if(saldoJogador < minSaldo)
 			minSaldo = saldoJogador;
@@ -280,7 +307,8 @@ public class Jogada {
 			qtdAmesa--;
 		}
 		
-		System.out.println("\nMesa: " + m1.getValor() + " " + m2.getValor() + " = " + somaMesa);
+		if(exibir)
+			System.out.println("\nMesa: " + m1.getValor() + " " + m2.getValor() + " = " + somaMesa);
 		//System.out.println(m1.getValor() + " - " + m2.getValor());
 		
 		int novaCarta;
@@ -301,12 +329,16 @@ public class Jogada {
 				somaMesa = somaMesa + novaCarta;
 				if(somaMesa > 21 && qtdAmesa > 0)
 				{
+					if(novaCarta == 11)
+						novaCarta = 1;
 					somaMesa -= 10;
 					qtdAmesa--;
 				}
-				System.out.println("(" + novaCarta + ") = " + somaMesa);
+				if(exibir)
+					System.out.println("(" + novaCarta + ") = " + somaMesa);
 				// System.out.println("Soma = " + somaMesa);
 			}
+			
 			
 			// System.out.println("\nJ="+soma1+" M="+somaMesa);
 			
@@ -431,21 +463,29 @@ public class Jogada {
 				
 		if(soma2 > 0)
 		{
-			System.out.println("\nJ = "+soma2);
-			System.out.println("Aposta = " + (apostar+dobrou2));
+			if(exibir)
+			{
+				System.out.println("\nJ = "+soma2);
+				System.out.println("Aposta = " + (apostar+dobrou2));
 
-				System.out.println("Jdiv = "+soma1);
-				System.out.println("apostaDividiu = " + (apostar+dobrou1));
+					System.out.println("Jdiv = "+soma1);
+					System.out.println("apostaDividiu = " + (apostar+dobrou1));
 
-			System.out.println("M = "+somaMesa);
+				System.out.println("M = "+somaMesa);
+				
+			}
 			// System.out.println("SALDO = " + saldoJogador);
 		}
 		else
 		{
-			System.out.println("\nJ = "+soma1);
-			System.out.println("Aposta = " + (apostar + dobrou));
+			if(exibir)
+			{
+				System.out.println("\nJ = "+soma1);
+				System.out.println("Aposta = " + (apostar + dobrou));
 
-			System.out.println("M = "+somaMesa);
+				System.out.println("M = "+somaMesa);
+			}
+			
 			// System.out.println("SALDO = " + saldoJogador);
 		}
 
@@ -475,7 +515,8 @@ public class Jogada {
 			) //final do IF
 			{
 				//Dividir
-				System.out.println("Dividiu1:");
+				if(exibir)
+					System.out.println("Dividiu1:");
 				if(j1.getValor() == 11)
 					qtdA=1;
 				else
@@ -486,8 +527,9 @@ public class Jogada {
 				dobrou = 0;
 				// System.out.println("Soma1 = " + soma1);
 				// System.out.println("dobrou1 = " + dobrou1);
-
-				System.out.println("Dividiu2:");
+				
+				if(exibir)
+					System.out.println("Dividiu2:");
 				if(j1.getValor() == 11)
 					qtdA=1;
 				else
@@ -541,7 +583,8 @@ public class Jogada {
 		int somaTemp;
 		//quando o jogador dividir
 		j2.setValor(b.distribuiCarta());
-		System.out.println("(" + j2.getValor() + ") = " + (j1.getValor() + j2.getValor()));
+		if(exibir)
+			System.out.println("(" + j2.getValor() + ") = " + (j1.getValor() + j2.getValor()));
 		if(j2.getValor() == 11)
 			qtdA++;
 		if(j1.getValor() == 11 || j2.getValor() == 11)
@@ -560,15 +603,32 @@ public class Jogada {
 	{
 		int novaCarta, somaP;
 		novaCarta = b.distribuiCarta();
-		if(novaCarta == 11)
-			qtdA++;
 		somaP = soma + novaCarta;
+		
+//		if(novaCarta == 11)
+//			qtdA++;
+		
+		if(novaCarta == 11)
+		{
+			if(somaP > 21)
+			{
+				novaCarta = 1;
+				somaP -= 10;
+			}
+			else
+			{
+				qtdA++;
+			}
+		}
+		
+		
 		if(somaP > 21 && qtdA > 0)
 		{
 			somaP -= 10;
 			qtdA--;
 		}
-		System.out.println("(" + novaCarta + ") = " + somaP);
+		if(exibir)
+			System.out.println("(" + novaCarta + ") = " + somaP);
 //		System.out.println("Soma = " + somaP);
 		return somaP;
 	}
@@ -732,19 +792,21 @@ public class Jogada {
 				return soma;				
 			}
 		}
-		if(soma < 17)
+//		if(soma < 17)
 			return jogadaSoma2();
-		else
-			return soma;
+//		else
+//			return soma;
 	}
 
 	private int jogadaSoma2() //SemPar
 	{
 		int lm1;
+		int stop = 0;
 //		soma = j1.getValor() + j2.getValor(); //verificar se esta correto!
 		lm1 = m1.getValor();
 		
-		while(soma < 17)
+//		while(soma < 17) //NAO COMPENSA
+		while(stop == 0)
 		{
 			if(soma <= 8)
 			{
@@ -768,76 +830,137 @@ public class Jogada {
 			}
 			else if(soma == 12)
 			{
-				if(lm1 >= 4 && lm1 <=6)
+				if(qtdA > 0)
 				{
+					soma = pegaCarta();	
+				}
+				else if(lm1 >= 4 && lm1 <= 6)
+				{
+					//stop
+					stop = 1;
 					return soma;
 				}
 				else
 				{
-					//peca
-					soma = pegaCarta();		
-				}	
+					soma = pegaCarta();	
+				}
+				
+//				if(lm1 >= 4 && lm1 <=6)
+//				{
+//					return soma;
+//				}
+//				else
+//				{
+//					//peca
+//					soma = pegaCarta();		
+//				}	
 			}
 			else if(soma >= 13 && soma <= 16)
 			{
+				
 				if(qtdA > 0)
 				{
-					//peca
-					soma = pegaCarta();	
+					//tem As
+					soma = pegaCarta();					
 				}
 				else
 				{
-					if(lm1 >= 2 && lm1 <=6)
+					if(lm1 >= 2 && lm1 <= 6)
 					{
+						//stop
+						stop = 1;
 						return soma;
 					}
 					else
 					{
-						//peca
-						soma = pegaCarta();		
-					}	
+						soma = pegaCarta();	
+					}
 				}
+				
+				
+//				if(qtdA > 0)
+//				{
+//					//peca
+//					soma = pegaCarta();	
+//				}
+//				else
+//				{
+//					if(lm1 >= 2 && lm1 <=6)
+//					{
+//						return soma;
+//					}
+//					else
+//					{
+//						//peca
+//						soma = pegaCarta();		
+//					}	
+//				}
 			}
 			else 
 			{
-				if((soma == 17 || soma == 18) && qtdA > 0)
+				
+				if(qtdA > 0)
 				{
-					if(soma == 17)
+					//tem As
+					if(
+					(soma > 18) ||
+					(soma == 18 && (lm1 == 2 || lm1 == 7 || lm1 == 8))
+					)
 					{
-						if(lm1 >= 3 && lm1 <= 6)
-						{
-							//peca
-							soma = pegaCarta();		
-						}
-						else
-						{
-							//peca
-							soma = pegaCarta();							
-						}
-							
+						//stop
+						stop = 1;							
 					}
-					else //soma == 18
+					else
 					{
-						if(lm1 >= 3 && lm1 <= 6)
-						{
-							//peca
-							soma = pegaCarta();		
-						}
-						else if(lm1 >= 9)
-						{
-							//peca
-							soma = pegaCarta();							
-						}
-						else //lm1 == 2 ou 7 ou 8
-						{
-							return soma;						
-						}
-					}
+						//17 ou 18 com mesa diferente de 2 7 8
+						soma = pegaCarta();							
+					}				
 				}
 				else
-				{
-					return soma;				
+				{		
+					//stop
+					stop = 1;			
 				}
+				
+				
+//				if((soma == 17 || soma == 18) && qtdA > 0)
+//				{
+//					if(soma == 17)
+//					{
+////						if(lm1 >= 3 && lm1 <= 6)
+////						{
+//							//peca
+//							soma = pegaCarta();		
+////						}
+////						else
+////						{
+//							//peca
+//							soma = pegaCarta();							
+////						}
+//							
+//					}
+//					else //soma == 18
+//					{
+//						if(lm1 >= 3 && lm1 <= 6)
+//						{
+//							//peca
+//							soma = pegaCarta();		
+//						}
+//						else if(lm1 >= 9)
+//						{
+//							//peca
+//							soma = pegaCarta();							
+//						}
+//						else //lm1 == 2 ou 7 ou 8
+//						{
+//							return soma;						
+//						}
+//					}
+//				}
+//				else
+//				{
+//					return soma;				
+//				}
 			}
 		}	
 		return soma; //confirmar
@@ -855,9 +978,9 @@ public class Jogada {
 		soma = j1.getValor() + j2.getValor();
 		
 		if(
-		((lj2 == 2 || lj2 == 3) && (lm1 == 5 || lm1 == 6)) //�s/2 ou �s/3, mesa 5 ou 6, #dobre.
-		|| ((lj2 == 4 || lj2 == 5) && (lm1 >= 4 && lm1 <= 6))  //�s/4 ou �s/5, mesa de 4 a 6, #dobre.
-		|| ((lj2 == 6 || lj2 == 7) && (lm1 >= 3 && lm1 <= 6)) //�s/6 ou �s/7, mesa 3 a 6, #dobre.
+		((lj2 == 2 || lj2 == 3) && (lm1 == 5 || lm1 == 6)) //As/2 ou As/3, mesa 5 ou 6, #dobre.
+		|| ((lj2 == 4 || lj2 == 5) && (lm1 >= 4 && lm1 <= 6))  //As/4 ou As/5, mesa de 4 a 6, #dobre.
+		|| ((lj2 == 6 || lj2 == 7) && (lm1 >= 3 && lm1 <= 6)) //As/6 ou As/7, mesa 3 a 6, #dobre.
 		)
 		{
 			
@@ -963,6 +1086,7 @@ public class Jogada {
 	{
 		return soma2;
 	}
+
 }
 
 
@@ -1565,9 +1689,9 @@ public class Jogada {
 		soma = j1.getValor() + j2.getValor();
 		
 		if(
-		((lj2 == 2 || lj2 == 3) && (lm1 == 5 || lm1 == 6)) //�s/2 ou �s/3, mesa 5 ou 6, #dobre.
-		|| ((lj2 == 4 || lj2 == 5) && (lm1 >= 4 && lm1 <= 6))  //�s/4 ou �s/5, mesa de 4 a 6, #dobre.
-		|| ((lj2 == 6 || lj2 == 7) && (lm1 >= 3 && lm1 <= 6)) //�s/6 ou �s/7, mesa 3 a 6, #dobre.
+		((lj2 == 2 || lj2 == 3) && (lm1 == 5 || lm1 == 6)) //As/2 ou As/3, mesa 5 ou 6, #dobre.
+		|| ((lj2 == 4 || lj2 == 5) && (lm1 >= 4 && lm1 <= 6))  //As/4 ou As/5, mesa de 4 a 6, #dobre.
+		|| ((lj2 == 6 || lj2 == 7) && (lm1 >= 3 && lm1 <= 6)) //As/6 ou As/7, mesa 3 a 6, #dobre.
 		)
 		{
 			//dobre

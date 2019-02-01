@@ -21,11 +21,11 @@ public class jogadaCleanTest {
 		for(int i = 0; i < 100; i++)
 		{
 			j = new JogadaClean(false);	
-			carta = j.retornaCarta(0);
+			carta = j.retornaCarta(0, false);
 			Assert.assertTrue(carta >= 2 && carta <=11);
 
 			j = new JogadaClean(false);	
-			carta = j.retornaCarta(20);
+			carta = j.retornaCarta(20, false);
 			Assert.assertTrue(carta >= 1 && carta <=10);
 		}		
 	}

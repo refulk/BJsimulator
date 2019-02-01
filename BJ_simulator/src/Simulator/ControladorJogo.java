@@ -1,4 +1,4 @@
-// package Simulator;
+package Simulator;
 
 import java.util.Scanner;
 
@@ -8,8 +8,9 @@ public class ControladorJogo {
 		
 		ControladorJogo cont = new ControladorJogo();
 		
-		// cont.Jogar(1000000, 0, 0, 0, 0);
-		cont.JogarManual(0, 0, 0, 0);
+//		cont.Jogar(1000000, 0, 0, 0, 0);
+//		cont.JogarManual(0, 0, 0, 0);
+		cont.JogarQtd(300);
 	}
 
 	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
@@ -28,7 +29,7 @@ public class ControladorJogo {
 	public void JogarManual(int j1, int j2, int m1, int m2)
 	{
 		JogadaClean j = new JogadaClean(true);
-		Scanner Input = new Scanner (System.in);		
+//		Scanner Input = new Scanner (System.in);		
 		Scanner reader = new Scanner(System.in);
 		int  entrada = 1;
 		
@@ -38,7 +39,16 @@ public class ControladorJogo {
 			entrada = reader.nextInt();
 		}
 	}
-
+	
+	public void JogarQtd(int qtd)
+	{
+		JogadaClean j = new JogadaClean(true);
+		
+		for(int i = 0; i < qtd; i++)
+		{
+			j.iniciaJogada(0,0,0,0);
+		}
+	}
 	  /*
 	   //BACKUP
 	   

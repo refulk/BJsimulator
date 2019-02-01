@@ -1,4 +1,4 @@
-// package Simulator;
+package Simulator;
 
 public class Carta {
 	private int valor;

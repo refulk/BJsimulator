@@ -1,4 +1,4 @@
-// package Simulator;
+package Simulator;
 
 public class JogadaClean {	
 	
@@ -57,7 +57,11 @@ public class JogadaClean {
 	public void iniciaJogada(int jj1, int jj2, int mm1, int mm2)
 	{
 		if(exibir)
-			System.out.println("\nNOVO JOGO");
+		{
+
+			System.out.println("\n///////////////////////");
+			System.out.println("NOVO JOGO");
+		}
 		zerarVariaveis();
 		if(b.qtdTotal < 100) //Se tiver menos de 100 cartas, embaralha novamente
 		{
@@ -144,8 +148,8 @@ public class JogadaClean {
 	{
 		int novaCarta, somaP;
 		novaCarta = retornaCarta(soma, false);
-		if(novaCarta == 11)
-			qtdA++;
+//		if(novaCarta == 11)
+//			qtdA++;
 		somaP = soma + novaCarta;
 		if(somaP > 21 && qtdA > 0)
 		{
@@ -600,7 +604,8 @@ public class JogadaClean {
 			somaMesa = somaMesa + novaCarta;
 			if(somaMesa > 21 && qtdAmesa > 0)
 			{
-				novaCarta = 1;
+				if(novaCarta == 11)
+					novaCarta = 1;
 				somaMesa -= 10;
 				qtdAmesa--;
 			}

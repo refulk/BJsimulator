@@ -1,4 +1,4 @@
-// package Simulator;
+package Simulator;
 
 public class JogadaCleanBKP {	
 	
@@ -57,7 +57,11 @@ public class JogadaCleanBKP {
 	public void iniciaJogada(int jj1, int jj2, int mm1, int mm2)
 	{
 		if(exibir)
-			System.out.println("\nNOVO JOGO");
+		{
+
+			System.out.println("\n///////////////////////");
+			System.out.println("NOVO JOGO");
+		}
 		zerarVariaveis();
 		if(b.qtdTotal < 100) //Se tiver menos de 100 cartas, embaralha novamente
 		{
@@ -123,8 +127,8 @@ public class JogadaCleanBKP {
 		}
 		if(exibir)
 		{
-			System.out.println("somaJogador = " + somaJogador);
-			System.out.println("somaJogadorDividiu = " + somaJogadorDividiu);
+			// System.out.println("somaJogador = " + somaJogador);
+			// System.out.println("somaJogadorDividiu = " + somaJogadorDividiu);
 		}
 	}
 	
@@ -143,20 +147,22 @@ public class JogadaCleanBKP {
 	public int pegaCarta(int soma)
 	{
 		int novaCarta, somaP;
-		novaCarta = retornaCarta(soma);
-		if(novaCarta == 11)
-			qtdA++;
+		novaCarta = retornaCarta(soma, false);
+//		if(novaCarta == 11)
+//			qtdA++;
 		somaP = soma + novaCarta;
 		if(somaP > 21 && qtdA > 0)
 		{
 			somaP -= 10;
 			qtdA--;
-		}				
+		}			
+		if(exibir)
+			System.out.println("("+novaCarta+") = "+somaP);	
 		return somaP;
 	}
 	
 	//Ok
-	public int retornaCarta(int soma)
+	public int retornaCarta(int soma, boolean ex)
 	{
 		int novaCarta, somaP;
 		novaCarta = b.distribuiCarta();
@@ -166,14 +172,14 @@ public class JogadaCleanBKP {
 			if(somaP > 21)
 			{
 				novaCarta = 1;
+				somaP -= 10;
 			}
 			else
 			{
 				qtdA++;
 			}
 		}
-		somaP = soma + novaCarta;
-		if(exibir)
+		if(ex)
 			System.out.println("("+novaCarta+") = "+somaP);
 		return novaCarta;		
 	}
@@ -181,7 +187,9 @@ public class JogadaCleanBKP {
 	//Ok
 	public int dobrar(int soma)
 	{
-		aposta = aposta * 2;	
+		aposta = aposta * 2;
+		// if(exibir)
+		// 	System.out.println("AP = " + aposta);
 		return pegaCarta(soma);
 	}
 	
@@ -232,7 +240,7 @@ public class JogadaCleanBKP {
 				}				
 				break;
 			case 7:				
-				if(lm1>=4 && lm1<=7)
+				if(lm1>=2 && lm1<=7)
 				{
 					jogadaDividir();
 				}
@@ -264,15 +272,15 @@ public class JogadaCleanBKP {
 	}
 	
 	//Feito
-	private void jogadaDividir()
+	private void jogadaDividir()  //verificar se esta correto!
 	{
 		int lj1, lj2;
 		lj1 = j1.getValor();
 		
 		if(exibir)
-			System.out.println("Dividiu1");
+			System.out.println("Dividiu1:");
 		
-		lj2 = retornaCarta(lj1); //pega segunda carta dividiu		
+		lj2 = retornaCarta(lj1, exibir); //pega segunda carta dividiu		
 		j2.setValor(lj2); //atualiza valor da segunda carta dividiu
 		qtdA = contaA(lj1, lj2);
 		somaJogadorDividiu = jogada1();
@@ -281,13 +289,13 @@ public class JogadaCleanBKP {
 		apostaDividiu = aposta;
 		blackjackDividiu = blackjack;
 		qtdA = 0;
-		aposta = 0;
+		aposta = 2;
 		blackjack = 0;
 
 		if(exibir)
-			System.out.println("Dividiu2");
+			System.out.println("Dividiu2:");
 		
-		lj2 = retornaCarta(lj1); //pega segunda carta
+		lj2 = retornaCarta(lj1, exibir); //pega segunda carta
 		j2.setValor(lj2); //atualiza valor da segunda carta
 		qtdA = contaA(lj1, lj2);
 		somaJogador = jogada1();
@@ -326,6 +334,9 @@ public class JogadaCleanBKP {
 		
 		switch(carta)
 		{
+			case 1:
+				soma = jogadaComum(soma);
+				break;
 			case 2:		
 				if(lm1 >= 5 && lm1 <= 6)
 				{
@@ -495,7 +506,11 @@ public class JogadaCleanBKP {
 			}
 			else if(soma <= 12)
 			{
-				if(lm1 >= 4 && lm1 <= 6)
+				if(qtdA > 0)
+				{
+					soma = pegaCarta(soma);
+				}
+				else if(lm1 >= 4 && lm1 <= 6)
 				{
 					//stop
 					stop = 1;
@@ -579,7 +594,7 @@ public class JogadaCleanBKP {
 		int novaCarta;
 		
 		if(exibir)
-			System.out.println("Mesa: " + m1.getValor() + " " + m2.getValor()+" = " + somaMesa);
+			System.out.println("\nMesa: " + m1.getValor() + " " + m2.getValor()+" = " + somaMesa);
 		
 		while(somaMesa < 17)
 		{
@@ -589,6 +604,8 @@ public class JogadaCleanBKP {
 			somaMesa = somaMesa + novaCarta;
 			if(somaMesa > 21 && qtdAmesa > 0)
 			{
+				if(novaCarta == 11)
+					novaCarta = 1;
 				somaMesa -= 10;
 				qtdAmesa--;
 			}
@@ -606,10 +623,12 @@ public class JogadaCleanBKP {
 		
 		if(exibir)
 		{
-			System.out.println("J = "+somaJogador);
+			System.out.println("\nJ = "+somaJogador);
+			System.out.println("Aposta = " + aposta);
 			if(somaJogadorDividiu > 0)
 			{
 				System.out.println("Jdiv = "+somaJogadorDividiu);
+				System.out.println("apostaDividiu = " + apostaDividiu);
 			}
 			System.out.println("M = "+somaMesa);
 			System.out.println("SALDO = " + saldoJogador);
@@ -637,13 +656,13 @@ public class JogadaCleanBKP {
 			{
 				//Mesa estourou
 				//Ganhou
-				saldoJogador += aposta;
+				saldoJogador += japosta;
 				qtdWin++;
 			}
 			else if(jsomaJogador > msomaMesa)
 			{
 				//Ganhou
-				saldoJogador += aposta;	
+				saldoJogador += japosta;	
 				qtdWin++;			
 			}
 			else if(jsomaJogador < msomaMesa)

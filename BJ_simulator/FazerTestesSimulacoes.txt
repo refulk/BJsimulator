@@ -1,13 +1,29 @@
+﻿
+
 
 Para verificar se os 2 programas estao corretos, fazer os Sysout deles iguais, fazer um baralho fixo, e comparar saídas no merge online.
 
 
+
+
 2 2 = compensa dividir?
+
 3 3 = compensa dividir?
+
 7 7 = compensa dividir?
+
 14, 15, 16 compensa pegar com mesa = 7 8 9 ?
+
 9 9 = testar o que compensa! (em tudo)
+
 A6 e A7 = compensa dobrar?
+
+
+Soma 17, Soma 18 e qtdA > 0 = testar o que compensa! Se compensa pegar carta ou nao.
+
+Ver se nas "Demais Jogadas" compensa comprar com 17 e 18. 
+(Na class Jogada, metodo jogadaSoma2, COMPENSA USAR while stop, como consta nas regras)
+
 
 
 
