@@ -88,7 +88,7 @@ public class jogadaCleanTest {
 	public void test22()
 	{
 		JogadaClean j;
-		for(int i = 0; i < 100; i++)
+		for(int i = 0; i < 1000; i++)
 		{
 			j = new JogadaClean(false);	
 			j.iniciaJogada(2, 2, 2, 0); //H
@@ -97,12 +97,12 @@ public class jogadaCleanTest {
 			
 			j = new JogadaClean(false);	
 			j.iniciaJogada(2, 2, 3, 0); //SP
-			Assert.assertTrue(j.saldoJogador <= 4 && j.saldoJogador >= -4); 
+			Assert.assertTrue(j.saldoJogador <= 8 && j.saldoJogador >= -8); 
 			Assert.assertTrue(j.somaJogador > 0 && j.somaJogadorDividiu > 0);	
 			
 			j = new JogadaClean(false);	
 			j.iniciaJogada(2, 2, 7, 0); //SP
-			Assert.assertTrue(j.saldoJogador <= 4 && j.saldoJogador >= -4); 
+			Assert.assertTrue(j.saldoJogador <= 8 && j.saldoJogador >= -8); 
 			Assert.assertTrue(j.somaJogador > 0 && j.somaJogadorDividiu > 0);		
 			
 			j = new JogadaClean(false);	

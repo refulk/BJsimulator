@@ -18,6 +18,8 @@ public class JogadaClean {
 	int blackjackDividiu;
 	public int qtdWin;
 	public int qtdLoss;
+	public int qtdEmpate;
+	public int apostaTotal;
 	
 	boolean exibir;
 
@@ -39,6 +41,8 @@ public class JogadaClean {
 		saldoJogador = 0;
 		qtdWin = 0;
 		qtdLoss = 0;
+		qtdEmpate = 0;
+		apostaTotal = 0;
 		zerarVariaveis();		
 	}
 	
@@ -615,7 +619,7 @@ public class JogadaClean {
 		}
 		
 		verificaVencedor(somaMesa, mesaBlackJack, somaJogador, blackjack, aposta);
-		
+
 		if(somaJogadorDividiu > 0)
 		{
 			verificaVencedor(somaMesa, mesaBlackJack, somaJogadorDividiu, blackjackDividiu, apostaDividiu);			
@@ -638,6 +642,7 @@ public class JogadaClean {
 	
 	private void verificaVencedor(int msomaMesa, int mblackjack, int jsomaJogador, int jblackjack, int japosta)
 	{
+		apostaTotal += japosta;
 		if(jsomaJogador <= 21) 
 		{
 			if(mblackjack == 1) // locovisck Se mesa e jogador tem BJ ?
@@ -670,6 +675,10 @@ public class JogadaClean {
 				//Perdeu
 				saldoJogador -= japosta;
 				qtdLoss++;
+			}
+			else
+			{
+				qtdEmpate++;
 			}
 			//else empate!				
 		}
