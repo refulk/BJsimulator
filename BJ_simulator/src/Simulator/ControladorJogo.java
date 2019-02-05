@@ -74,13 +74,13 @@ public class ControladorJogo {
 		//{
 			//while(carta1 <= 1)
 			//{
-//				carta1 = retornarMenorQue(limite);
+				carta1 = retornarMenorQue(limite);
 			//}
 			//while(carta2 <= 1)
 			//{
-//				carta2 = 9 - carta1;
+				carta2 = 9 - carta1;
 			//}
-//			soma = carta1 + carta2;
+			soma = carta1 + carta2;
 		//}
 		if(1 == 0)
 		{			
@@ -90,7 +90,7 @@ public class ControladorJogo {
 		}
 
 		Jogar(2000000, carta1, carta2, m1, 0);
-//		Jogar(10000000, 0, 0, 0, 0);
+//		Jogar(1000000, 0, 0, 0, 0);
 	}
 
 	public int retornarMenorQue(int valor)
