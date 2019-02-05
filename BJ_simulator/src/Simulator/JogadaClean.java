@@ -3,10 +3,10 @@ package Simulator;
 public class JogadaClean {	
 	
 	Baralho b = new Baralho();
-	Carta j1 = new Carta();
-	Carta j2 = new Carta();
-	Carta m1 = new Carta();
-	Carta m2 = new Carta();
+	public Carta j1 = new Carta();
+	public Carta j2 = new Carta();
+	public Carta m1 = new Carta();
+	public Carta m2 = new Carta();
 	public int saldoJogador;
 	int qtdA;
 	public int somaJogador;
@@ -20,6 +20,7 @@ public class JogadaClean {
 	public int qtdLoss;
 	public int qtdEmpate;
 	public int apostaTotal;
+	static int apostaInicial;
 	
 	boolean exibir;
 
@@ -43,6 +44,7 @@ public class JogadaClean {
 		qtdLoss = 0;
 		qtdEmpate = 0;
 		apostaTotal = 0;
+		apostaInicial = 2;
 		zerarVariaveis();		
 	}
 	
@@ -50,11 +52,11 @@ public class JogadaClean {
 	{
 		qtdA = 0;
 		somaJogador = 0;
-		aposta = 2;
+		aposta = apostaInicial;
 		blackjack = 0;
 		qtdADividiu = 0;
 		somaJogadorDividiu = 0;
-		apostaDividiu = 2;
+		apostaDividiu = apostaInicial;
 		blackjackDividiu = 0;
 	}
 	
@@ -293,7 +295,7 @@ public class JogadaClean {
 		apostaDividiu = aposta;
 		blackjackDividiu = blackjack;
 		qtdA = 0;
-		aposta = 2;
+		aposta = apostaInicial;
 		blackjack = 0;
 
 		if(exibir)
@@ -619,10 +621,9 @@ public class JogadaClean {
 		}
 		
 		verificaVencedor(somaMesa, mesaBlackJack, somaJogador, blackjack, aposta);
-
 		if(somaJogadorDividiu > 0)
 		{
-			verificaVencedor(somaMesa, mesaBlackJack, somaJogadorDividiu, blackjackDividiu, apostaDividiu);			
+			verificaVencedor(somaMesa, mesaBlackJack, somaJogadorDividiu, blackjackDividiu, apostaDividiu);		
 		}
 		
 		if(exibir)
@@ -648,7 +649,8 @@ public class JogadaClean {
 			if(mblackjack == 1) // locovisck Se mesa e jogador tem BJ ?
 			{
 				//Perdeu
-				saldoJogador -= japosta;
+//				saldoJogador -= japosta;
+				saldoJogador -= apostaInicial;
 				qtdLoss++;
 			}
 			else if(jblackjack == 1)

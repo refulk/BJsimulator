@@ -10,10 +10,10 @@ public class Jogada {
 	//empatou, ngm ganha, ngm perde. As apostas sao devolvidas
 	
 	Baralho b = new Baralho();
-	Carta j1 = new Carta();
-	Carta j2 = new Carta();
-	Carta m1 = new Carta();
-	Carta m2 = new Carta();
+	public Carta j1 = new Carta();
+	public Carta j2 = new Carta();
+	public Carta m1 = new Carta();
+	public Carta m2 = new Carta();
 	int qtdA;
 	int soma;
 	public int soma1;

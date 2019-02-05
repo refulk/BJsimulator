@@ -13,11 +13,11 @@ public class ControladorJogo {
 		
 		ControladorJogo cont = new ControladorJogo();
 		
-		//cont.JogarMediaEspec(10);
+		cont.JogarMediaEspec(10);
 
-		cont.JogarMedia(10, 2000000, 0, 0, 0, 0);
+//		cont.JogarMedia(10, 2000000, 0, 0, 0, 0);
 //		cont.Jogar(1000000, 0, 0, 0, 0);
-//		cont.JogarManual(0, 0, 0, 0);
+//		cont.JogarManual(11, 11, 0, 0);
 //		cont.JogarQtd(300);
 	}
 
@@ -33,7 +33,7 @@ public class ControladorJogo {
 
 	public void JogarMediaEspec(int qtdMed)
 	{
-		for(int k = 0; k <= 0; k++)
+		for(int k = 0; k <= 0; k++) //alterar aqui para executar mais numeros
 		{			
 			System.out.println("\n"+k);
 
@@ -50,6 +50,7 @@ public class ControladorJogo {
 			System.out.printf("\nporcSaldoMed = " + "%.3f", porcSaldoMed);
 			System.out.println("");
 			System.out.printf("porcBruto = " + "%.3f", ((saldoBruto / Double.valueOf(saldoBrutoTot))*100));
+			System.out.println("\nSaldoBruto Final (volume) = "+saldoBruto);
 
 		}
 	}
@@ -83,6 +84,7 @@ public class ControladorJogo {
 		}
 
 		Jogar(2000000, carta1, carta2, m1, 0);
+//		Jogar(2000000, 0, 0, 0, 0);
 	}
 
 	public int retornarMenorQue(int valor)
