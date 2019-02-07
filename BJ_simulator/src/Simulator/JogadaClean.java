@@ -210,7 +210,7 @@ public class JogadaClean {
 		switch(lj1)
 		{
 			case 2:			
-				if(lm1>=3 && lm1<=7)
+				if(lm1>=2 && lm1<=7)
 				{
 					jogadaDividir();
 				}
@@ -220,7 +220,7 @@ public class JogadaClean {
 				}
 				break;
 			case 3:				
-				if(lm1>=4 && lm1<=7)
+				if(lm1>=2 && lm1<=7)
 				{
 					jogadaDividir();
 				}
@@ -256,7 +256,14 @@ public class JogadaClean {
 				}				
 				break;
 			case 8:			
-				jogadaDividir();	//verificar se compensa dividir em todas	
+				if(lm1 >= 10 && lm1 <= 11)
+				{
+					somaJogador = jogada1();
+				}
+				else
+				{
+					jogadaDividir();	//verificar se compensa dividir em todas	
+				}
 				break;
 			case 9:					
 				if((lm1>=2 && lm1<=6) || (lm1>=8 && lm1<=9))
@@ -344,7 +351,7 @@ public class JogadaClean {
 				soma = jogadaComum(soma);
 				break;
 			case 2:		
-				if(lm1 >= 5 && lm1 <= 6)
+				if(lm1 == 6)
 				{
 					soma = dobrar(soma);
 				}

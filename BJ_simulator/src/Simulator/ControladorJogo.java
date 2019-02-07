@@ -14,24 +14,13 @@ public class ControladorJogo {
 		ControladorJogo cont = new ControladorJogo();
 
 //		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
-//		cont.jogarTodasCartasM(1, 10000000, 13);
-//		cont.jogarTodasCartasM(1, 10000000, 13);
-//		cont.jogarTodasCartasM(1, 10000000, 14);
-//		cont.jogarTodasCartasM(1, 10000000, 14);
-//		cont.jogarTodasCartasM(1, 10000000, 15);
-//		cont.jogarTodasCartasM(1, 10000000, 15);
-//		cont.jogarTodasCartasM(1, 10000000, 16);
-//		cont.jogarTodasCartasM(1, 10000000, 16);
-//		cont.jogarTodasCartasM(1, 10000000, 17);
-//		cont.jogarTodasCartasM(1, 10000000, 17);
-		cont.jogarTodasCartasM(1, 10000000, 18);
-		cont.jogarTodasCartasM(1, 10000000, 18);
-//		cont.jogarTodasCartasM(1, 10000000, 19);
-//		cont.jogarTodasCartasM(1, 10000000, 19);
-//		cont.jogarTodasCartasM(1, 10000000, 20);
-//		cont.jogarTodasCartasM(1, 10000000, 20);
-//		cont.jogarTodasCartasM(1, 10000000, 21);
-//		cont.jogarTodasCartasM(1, 10000000, 21);
+
+		// cont.JogarEspec(10, 0, 0, 2, true);
+
+		// cont.jogarTodasCartasM(1, 10000000, 2);
+
+		cont.Jogar(10000000, 0, 0, 0, 0, true);
+		
 	}
 	
 	public ControladorJogo()
@@ -77,7 +66,7 @@ public class ControladorJogo {
 	public void JogarEspec(int qtdJogadas, int m1, int m2, int somaLimite, boolean exibir)
 	{
 		JogadaClean j = new JogadaClean(false);
-		int carta1 = 1, carta2 = 12, soma = 22;
+		int carta1 = somaLimite, carta2 = somaLimite, soma = carta1 + carta2;
 		int limite = somaLimite - 1;
 		
 		if(limite > 12)
@@ -85,14 +74,14 @@ public class ControladorJogo {
 		
 		for(int i = 0; i < qtdJogadas; i++)
 		{
-			carta2 = 12;
-			while(carta2 > 11)
-			{
-//				carta1 = retornarMenorQue(limite);
-				carta1 = 11;
-				carta2 = somaLimite - carta1;
-				soma = carta1 + carta2;
-			}
+// 			carta2 = 12;
+// 			while(carta2 > 11)
+// 			{
+// //				carta1 = retornarMenorQue(limite);
+// 				carta1 = 11;
+// 				carta2 = somaLimite - carta1;
+// 				soma = carta1 + carta2;
+// 			}
 			if(exibir)
 			{			
 				System.out.println("carta1 = " + carta1);
@@ -122,18 +111,8 @@ public class ControladorJogo {
 		return retorno;
 	}
 
-	/*
-	public void JogarMedia(int qtdMed, int qtdJogadas, int j1, int j2, int m1, int m2)
-	{
-		zerarVariaveis();
-		for(int i = 0; i < qtdMed; i++)
-		{
-			Jogar(qtdJogadas,j1,j2,m1,m2);
-		}
-		System.out.println("saldoBruto = " + saldoBruto);
-	}
 
-	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
+	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2, boolean exibe)
 	{
 		JogadaClean j = new JogadaClean(false);
 		
@@ -144,27 +123,38 @@ public class ControladorJogo {
 		saldoBruto += j.saldoJogador;
 		saldoBrutoTot += j.apostaTotal;
 
-//		porcWin = (j.qtdWin*100)/Double.valueOf(j.qtdWin+j.qtdLoss+j.qtdEmpate);
-//		porcSaldo = (j.saldoJogador*100)/Double.valueOf(j.apostaTotal);
+		porcWin = (j.qtdWin*100)/Double.valueOf(j.qtdWin+j.qtdLoss+j.qtdEmpate);
+		porcSaldo = (j.saldoJogador*100)/Double.valueOf(j.apostaTotal);
 
-//		if(exibe)
-//		{
-//			System.out.println("\nQtdJogadas = " + qtdJogadas);
-//			System.out.println("Saldo = " + j.saldoJogador);
-//			System.out.println("qtdWin = " + j.qtdWin);
-//			System.out.println("qtdLoss = " + j.qtdLoss);
-//			System.out.println("Empate = " + j.qtdEmpate);
-//			System.out.println("apostaTotal = " + j.apostaTotal);
-//		}
-//
-//		if(exibe)
-//		{
-//			System.out.printf("\nporcWin = " + "%.3f", porcWin);
-//			System.out.printf("\nporcSaldo = " + "%.3f", porcSaldo);
-//			System.out.println("");
-//		}
+		if(exibe)
+		{
+			System.out.println("\nQtdJogadas = " + qtdJogadas);
+			System.out.println("Saldo = " + j.saldoJogador);
+			System.out.println("qtdWin = " + j.qtdWin);
+			System.out.println("qtdLoss = " + j.qtdLoss);
+			System.out.println("Empate = " + j.qtdEmpate);
+			System.out.println("apostaTotal = " + j.apostaTotal);
+		}
+
+		if(exibe)
+		{
+			System.out.printf("\nporcWin = " + "%.3f", porcWin);
+			System.out.printf("\nporcSaldo = " + "%.3f", porcSaldo);
+			System.out.println("");
+		}
 
 		
+	}
+
+	/*
+	public void JogarMedia(int qtdMed, int qtdJogadas, int j1, int j2, int m1, int m2)
+	{
+		zerarVariaveis();
+		for(int i = 0; i < qtdMed; i++)
+		{
+			Jogar(qtdJogadas,j1,j2,m1,m2);
+		}
+		System.out.println("saldoBruto = " + saldoBruto);
 	}
 	
 	public void JogarManual(int j1, int j2, int m1, int m2)
