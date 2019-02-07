@@ -12,15 +12,17 @@ public class ControladorJogo {
 	public static void main(String[] args) {
 		
 		ControladorJogo cont = new ControladorJogo();
+
+		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
+		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
+		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
+		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
+		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
+		//4858580
+		//3161248
 		
-		cont.JogarMediaEspec(10);
-
-//		cont.JogarMedia(10, 2000000, 0, 0, 0, 0);
-//		cont.Jogar(1000000, 0, 0, 0, 0);
-//		cont.JogarManual(11, 11, 0, 0);
-//		cont.JogarQtd(300);
 	}
-
+	
 	public ControladorJogo()
 	{
 		zerarVariaveis();
@@ -36,61 +38,49 @@ public class ControladorJogo {
 		saldoBrutoTot = 0;
 	}
 	
-	public void JogarMediaEspec(int qtdMed)
+	public void JogarMediaEspec(int qtdMed, int qtdJogadas, int somaLimite, int m1, int m2)
 	{
-		for(int k = 2; k <= 11; k++) //alterar aqui para executar mais numeros
-		{			
-			System.out.println("\n"+k);
-
-			for(int i = 0; i < qtdMed; i++)
-			{
-				JogarEspec(k);
-				porcWinMed+=porcWin;
-				porcSaldoMed+=porcSaldo;
-			}
-
-			porcWinMed = porcWinMed/qtdMed;
-			porcSaldoMed = porcSaldoMed/qtdMed;
-			System.out.printf("porcWinMed = " + "%.3f", porcWinMed);
-			System.out.printf("\nporcSaldoMed = " + "%.3f", porcSaldoMed);
-			System.out.println("");
-			System.out.printf("porcBruto = " + "%.3f", ((saldoBruto / Double.valueOf(saldoBrutoTot))*100));
-			System.out.println("\nSaldoBruto Final (volume) = "+saldoBruto);
-			
-			zerarVariaveis();
+		zerarVariaveis();
+		for(int i = 0; i < qtdMed; i++)
+		{
+			JogarEspec(qtdJogadas,m1,m2, somaLimite, false);
+//			System.out.println(" saldoP = " + saldoBruto);
 		}
+		System.out.println("saldoBruto = " + saldoBruto);
 	}
-
-	public void JogarEspec(int m1)
+	
+	public void JogarEspec(int qtdJogadas, int m1, int m2, int somaLimite, boolean exibir)
 	{
-		int carta1 = 1, carta2 = 1, soma = 22;
-		int limite = 8;
-		int somaLimite = 9;
+		JogadaClean j = new JogadaClean(false);
+		int carta1 = 1, carta2 = 12, soma = 22;
+		int limite = somaLimite - 1;
 		
-		//somaLimite++;
-
+		if(limite > 12)
+			limite = 12;
 		
-		//while(soma != somaLimite)
-		//{
-			//while(carta1 <= 1)
-			//{
+		for(int i = 0; i < qtdJogadas; i++)
+		{
+			carta2 = 12;
+			while(carta2 > 11)
+			{
 				carta1 = retornarMenorQue(limite);
-			//}
-			//while(carta2 <= 1)
-			//{
-				carta2 = 9 - carta1;
-			//}
-			soma = carta1 + carta2;
-		//}
-		if(1 == 0)
-		{			
-			System.out.println("carta1 = " + carta1);
-			System.out.println("carta2 = " + carta2);	
-			System.out.println("soma = " + soma);	
+				carta2 = somaLimite - carta1;
+				soma = carta1 + carta2;
+			}
+			if(exibir)
+			{			
+				System.out.println("carta1 = " + carta1);
+				System.out.println("carta2 = " + carta2);	
+				System.out.println("soma = " + soma);	
+			}
+			else
+			{
+				j.iniciaJogada(carta1,carta2,m1,m2);
+//				j.iniciaJogada(0,0,0,0);
+			}
 		}
+		saldoBruto += j.saldoJogador;
 
-		Jogar(2000000, carta1, carta2, m1, 0);
-//		Jogar(1000000, 0, 0, 0, 0);
 	}
 
 	public int retornarMenorQue(int valor)
@@ -106,19 +96,15 @@ public class ControladorJogo {
 		return retorno;
 	}
 
+	/*
 	public void JogarMedia(int qtdMed, int qtdJogadas, int j1, int j2, int m1, int m2)
 	{
+		zerarVariaveis();
 		for(int i = 0; i < qtdMed; i++)
 		{
 			Jogar(qtdJogadas,j1,j2,m1,m2);
-			porcWinMed+=porcWin;
-			porcSaldoMed+=porcSaldo;
 		}
-		porcWinMed = porcWinMed/qtdMed;
-		porcSaldoMed = porcSaldoMed/qtdMed;
-		System.out.printf("\nporcWinMed = " + "%.3f", porcWinMed);
-		System.out.printf("\nporcSaldoMed = " + "%.3f", porcSaldoMed);
-		System.out.println("");
+		System.out.println("saldoBruto = " + saldoBruto);
 	}
 
 	public void Jogar(int qtdJogadas, int j1, int j2, int m1, int m2)
@@ -132,25 +118,27 @@ public class ControladorJogo {
 		saldoBruto += j.saldoJogador;
 		saldoBrutoTot += j.apostaTotal;
 
-		porcWin = (j.qtdWin*100)/Double.valueOf(j.qtdWin+j.qtdLoss+j.qtdEmpate);
-		porcSaldo = (j.saldoJogador*100)/Double.valueOf(j.apostaTotal);
+//		porcWin = (j.qtdWin*100)/Double.valueOf(j.qtdWin+j.qtdLoss+j.qtdEmpate);
+//		porcSaldo = (j.saldoJogador*100)/Double.valueOf(j.apostaTotal);
 
-		if(1 == 0)
-		{
-			System.out.println("\nQtdJogadas = " + qtdJogadas);
-			System.out.println("Saldo = " + j.saldoJogador);
-			System.out.println("qtdWin = " + j.qtdWin);
-			System.out.println("qtdLoss = " + j.qtdLoss);
-			System.out.println("Empate = " + j.qtdEmpate);
-			System.out.println("apostaTotal = " + j.apostaTotal);
-		}
+//		if(exibe)
+//		{
+//			System.out.println("\nQtdJogadas = " + qtdJogadas);
+//			System.out.println("Saldo = " + j.saldoJogador);
+//			System.out.println("qtdWin = " + j.qtdWin);
+//			System.out.println("qtdLoss = " + j.qtdLoss);
+//			System.out.println("Empate = " + j.qtdEmpate);
+//			System.out.println("apostaTotal = " + j.apostaTotal);
+//		}
+//
+//		if(exibe)
+//		{
+//			System.out.printf("\nporcWin = " + "%.3f", porcWin);
+//			System.out.printf("\nporcSaldo = " + "%.3f", porcSaldo);
+//			System.out.println("");
+//		}
 
-		if(1 == 0)
-		{
-			System.out.printf("\nporcWin = " + "%.3f", porcWin);
-			System.out.printf("\nporcSaldo = " + "%.3f", porcSaldo);
-			System.out.println("");
-		}
+		
 	}
 	
 	public void JogarManual(int j1, int j2, int m1, int m2)
@@ -176,6 +164,10 @@ public class ControladorJogo {
 			j.iniciaJogada(0,0,0,0);
 		}
 	}
+	
+	*/
+	
+	
 	  /*
 	   //BACKUP
 	   

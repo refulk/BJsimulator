@@ -648,10 +648,16 @@ public class JogadaClean {
 		{
 			if(mblackjack == 1) // locovisck Se mesa e jogador tem BJ ?
 			{
-				//Perdeu
-//				saldoJogador -= japosta;
-				saldoJogador -= apostaInicial;
-				qtdLoss++;
+				if(jblackjack != 1)
+				{
+					//Perdeu
+//					saldoJogador -= japosta;
+					saldoJogador -= apostaInicial;
+					apostaTotal -= japosta;
+					apostaTotal += apostaInicial;
+					qtdLoss++;
+				}
+				//else empate!	
 			}
 			else if(jblackjack == 1)
 			{
