@@ -13,14 +13,25 @@ public class ControladorJogo {
 		
 		ControladorJogo cont = new ControladorJogo();
 
-		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
-		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
-		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
-		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
-		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
-		//4858580
-		//3161248
-		
+//		cont.JogarMediaEspec(1, 10000000, 9, 5, 0);
+//		cont.jogarTodasCartasM(1, 10000000, 13);
+//		cont.jogarTodasCartasM(1, 10000000, 13);
+//		cont.jogarTodasCartasM(1, 10000000, 14);
+//		cont.jogarTodasCartasM(1, 10000000, 14);
+//		cont.jogarTodasCartasM(1, 10000000, 15);
+//		cont.jogarTodasCartasM(1, 10000000, 15);
+//		cont.jogarTodasCartasM(1, 10000000, 16);
+//		cont.jogarTodasCartasM(1, 10000000, 16);
+//		cont.jogarTodasCartasM(1, 10000000, 17);
+//		cont.jogarTodasCartasM(1, 10000000, 17);
+		cont.jogarTodasCartasM(1, 10000000, 18);
+		cont.jogarTodasCartasM(1, 10000000, 18);
+//		cont.jogarTodasCartasM(1, 10000000, 19);
+//		cont.jogarTodasCartasM(1, 10000000, 19);
+//		cont.jogarTodasCartasM(1, 10000000, 20);
+//		cont.jogarTodasCartasM(1, 10000000, 20);
+//		cont.jogarTodasCartasM(1, 10000000, 21);
+//		cont.jogarTodasCartasM(1, 10000000, 21);
 	}
 	
 	public ControladorJogo()
@@ -38,6 +49,20 @@ public class ControladorJogo {
 		saldoBrutoTot = 0;
 	}
 	
+		
+	public void jogarTodasCartasM(int qtdMed, int qtdJogadas, int somaLimite)
+	{
+		System.out.println(somaLimite);	
+		for(int i = 0; i <= 11; i++)
+		{
+			if(i == 1)
+				i = 2;
+//			System.out.printf("("+i+")");
+			JogarMediaEspec(qtdMed, qtdJogadas, somaLimite, i, 0);	
+		}	
+		System.out.println("");	
+	}
+	
 	public void JogarMediaEspec(int qtdMed, int qtdJogadas, int somaLimite, int m1, int m2)
 	{
 		zerarVariaveis();
@@ -46,7 +71,7 @@ public class ControladorJogo {
 			JogarEspec(qtdJogadas,m1,m2, somaLimite, false);
 //			System.out.println(" saldoP = " + saldoBruto);
 		}
-		System.out.println("saldoBruto = " + saldoBruto);
+		System.out.printf(saldoBruto + ", ");
 	}
 	
 	public void JogarEspec(int qtdJogadas, int m1, int m2, int somaLimite, boolean exibir)
@@ -63,7 +88,8 @@ public class ControladorJogo {
 			carta2 = 12;
 			while(carta2 > 11)
 			{
-				carta1 = retornarMenorQue(limite);
+//				carta1 = retornarMenorQue(limite);
+				carta1 = 11;
 				carta2 = somaLimite - carta1;
 				soma = carta1 + carta2;
 			}
